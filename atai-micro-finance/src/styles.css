@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+
+.hide{
+    display: none;
+}
+
+
+input{
+    width: 30%;
+}
+
+select{
+    width: 20%;
+}
+
+.blockstyle{
+    /* outline-style: outset;
+    outline-color: rgb(165, 166, 167);
+    outline-width: 2px;*/
+    background-color:white;
+    
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);     
+}
+
+.mainbackgound{
+    background-color:lightgray;
+}
+
+.mainbuttonpanel{
+    /* padding-top: 10px; */
+    padding-bottom: 20px;
+}
+
+.btn-crud{
+    border: 1px solid rgba(220, 226, 230, 0.726);
+    background-color: white;
+    padding: 2px 10px;
+ }
+
+ .btn-success{
+    border: 1px solid rgba(220, 226, 230, 0.726);
+    padding: 4px 10px;
+ }
+
+ .btn-default{
+    background-color: white;
+    border: 1px solid rgba(220, 226, 230, 0.726);
+    padding: 4px 10px;
+ }
+
+ .container{
+     padding-left: 0px;
+ }
+
+ .group-block{
+     padding-top: 10px;
+     width: 100%;
+     margin-right: 0%
+ }
+
+ label{
+     font-size: 12.5px;
+ }
+
+ .viewport{
+    
+    
+    padding-right: 10px;
+    padding-top: 10px;
+   }
+
+.main-col{
+    height: -webkit-fill-available;
+}

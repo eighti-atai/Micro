@@ -1,0 +1,12 @@
+/* .form-control{
+    width: 25%;
+}
+
+input {
+    width: 50%;
+} */
+
+input.ng-invalid.ng-touched,select.ng-invalid.ng-touched{
+    border: 2px solid;
+    border-color:red; 
+}

@@ -1,0 +1,118 @@
+
+<h3>Employee <select 
+    type="text"
+    id="title"
+    class="form-control form-control-sm"
+    [(ngModel)]="baseService.headerobjid"
+    (ngModelChange)="baseService.reload(baseService.headerobjid)"
+    name="title">
+    <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">{{record.userName}} - {{record.firstName}} </option> 
+</select></h3>
+<form #f="ngForm">
+    <div class="row mainbuttonpanel">
+        <div class="col-md-3">
+            <button *ngIf="(record.objid ===null) && !new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+                <i class="material-icons md-18">add</i>
+            </button>   
+            <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+                <i class="material-icons md-18">edit</i>
+            </button>
+            <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
+                <i class="material-icons md-18">delete</i>
+            </button>
+            <button *ngIf="f.valid && f.dirty" class="btn btn-success">Save</button>
+            <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
+        </div>
+        <div class="col-md-1">
+                <button class="btn btn-default">Details</button>
+        </div>
+       
+    </div>
+    <div class="row blockstyle group-block">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <select 
+                    type="text"
+                    id="title"
+                    class="form-control form-control-sm"
+                    [ngModel]="defaultTitle"
+                    name="title"
+                    required
+                    [disabled]="readMode">
+                    <option value="mr">Mr</option>
+                    <option value="mrs">Mrs</option>
+                    <option value="master">Master</option>
+                    <option value="miss">Miss</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input 
+                    type="text"
+                    id="userName"
+                    class="form-control form-control-sm"
+                    [ngModel]="baseService.record.userName"
+                    name="userName"
+                    required
+                    [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input 
+                    type="text"
+                    id="firstName"
+                    class="form-control form-control-sm"
+                    [ngModel]="baseService.record.firstName"
+                    name="firstName"
+                    required
+                    [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="middleName">Middle Name</label>
+                <input 
+                    type="text"
+                    id="middleName"
+                    class="form-control form-control-sm"
+                    ngModel
+                    name="middleName"
+                    [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="lastname">Last Name</label>
+                    <input 
+                        type="text"
+                        id="lastname"
+                        class="form-control form-control-sm"
+                        ngModel
+                        name="lastname"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select 
+                    type="text"
+                    id="gender"
+                    class="form-control form-control-sm"
+                    ngModel
+                    name="gender"
+                    [disabled]="readMode">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+        </div>
+        <hr>
+    </div>
+</form>
