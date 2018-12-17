@@ -6,12 +6,12 @@
     [(ngModel)]="baseService.headerobjid"
     (ngModelChange)="baseService.reload(baseService.headerobjid)"
     name="title">
-    <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">{{record.userName}} - {{record.firstName}} </option> 
+    <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">{{record.id}} - {{record.firstName}} </option> 
 </select></h3>
-<form #f="ngForm">
+<form #f="ngForm" (ngSubmit)="baseService.onSubmit();" >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
-            <button *ngIf="(record.objid ===null) && !new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+            <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">add</i>
             </button>   
             <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
@@ -20,7 +20,7 @@
             <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">delete</i>
             </button>
-            <button *ngIf="f.valid && f.dirty" class="btn btn-success">Save</button>
+            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
             <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
         </div>
         <div class="col-md-1">
@@ -54,7 +54,7 @@
                     type="text"
                     id="userName"
                     class="form-control form-control-sm"
-                    [ngModel]="baseService.record.userName"
+                    [(ngModel)]="baseService.record.id"
                     name="userName"
                     required
                     [disabled]="readMode">
@@ -67,7 +67,7 @@
                     type="text"
                     id="firstName"
                     class="form-control form-control-sm"
-                    [ngModel]="baseService.record.firstName"
+                    [(ngModel)]="baseService.record.firstName"
                     name="firstName"
                     required
                     [disabled]="readMode">

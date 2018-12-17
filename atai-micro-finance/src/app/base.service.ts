@@ -46,14 +46,14 @@ export class BaseService {
 
   
   createObject(obj: Object): Observable<any> {
-    return this.http.post(`${this.baseUrl}` + `/`, obj)
+    return this.http.post(`${this.baseUrl}` , obj)
     .pipe( 
       //catchError(this.handleError('Create '))
       );
   }
 
   updateObjct(obj: Object): Observable<any> {
-    return this.http.put(`${this.baseUrl}/`, obj)
+    return this.http.put(`${this.baseUrl}`, obj)
     .pipe( 
       //catchError(this.handleError('Edit '))
       );

@@ -15,6 +15,7 @@ import com.atai.micro.generic.interfaces.Model;
 public class Employee  implements Model<String> {
 	
 	@Id
+	//@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_name")
 	private String userName;
 	@Column(name = "user_type")
