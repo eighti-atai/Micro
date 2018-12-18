@@ -2,6 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {FormArray  } from "@angular/forms";
 import { NgForm } from '@angular/forms';
+import { BaseService } from '../base.service';
+import { Employee } from '../employee/employee';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employees',
@@ -16,20 +19,30 @@ export class EmployeesComponent implements OnInit {
   readMode = true;
   defaultTitle = "mr";
   defaultName = "";
-  record: any;
+  //record: any;
   recordFormat = {title: "string", firstName: "string", middleName: "string", lastName: "string", gender: "string"}
   employeesForm : FormGroup;
   rows: FormArray;
+
+  record: Employee = new Employee();
+  oldRecord: Employee = new Employee();
+  searchRecord: Employee = new Employee();
+  recordsArr: Employee[];
+  records: Observable<Employee[]>;
+  submitted = false;
+  lastobjid = null;
   
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private baseService: BaseService) { }
 
   ngOnInit() {
-    this.record = {objid: null};
+    //this.record = {objid: null};
     this.employeesForm = this.fb.group({
       rows: this.fb.array([
         ])
     });
+    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
+    this.baseService.reloadAll();
   }
   onNew(){
     //this.new = true;

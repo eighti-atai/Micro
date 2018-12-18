@@ -1,13 +1,22 @@
+<table>
+    <tr class="col-md-2">
+        <td><h3>Employee</h3></td>
+    <td>    
+        <select 
+            type="text"
+            id="title"
+            class="form-control form-control-sm mainbackgound mainselector select-selected"
+            [(ngModel)]="baseService.headerobjid"
+            (ngModelChange)="baseService.reload(baseService.headerobjid)"
+            name="title">
+            <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
+                {{record.id}} - {{record.firstName}} 
+            </option>
+        </select>
+    </td>
+    </tr>
+</table>
 
-<h3>Employee <select 
-    type="text"
-    id="title"
-    class="form-control form-control-sm"
-    [(ngModel)]="baseService.headerobjid"
-    (ngModelChange)="baseService.reload(baseService.headerobjid)"
-    name="title">
-    <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">{{record.id}} - {{record.firstName}} </option> 
-</select></h3>
 <form #f="ngForm" (ngSubmit)="baseService.onSubmit();" >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">

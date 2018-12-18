@@ -33,13 +33,14 @@
                         <th scope="col">Gender</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let employee of employeesForm.get('rows').controls; let i=index">
-                    <tr [formGroupName]="i">
+            <tbody *ngFor="let record of baseService.recordsArr; let i=index">  
+                    <tr >
                         <td>
                             <select 
                                 type="text"
                                 class="form-control form-control-sm"
-                                formControlName="title"
+                                 [(ngModel)]="record.title"
+                                 [ngModelOptions]="{standalone: true}"
                                 required>
                                 <option value="mr">Mr</option>
                                 <option value="mrs">Mrs</option>
@@ -52,7 +53,8 @@
                                 type="text"
                                 id="firstName"
                                 class="form-control form-control-sm"
-                                formControlName="firstName"
+                                [(ngModel)]="record.firstName"
+                                [ngModelOptions]="{standalone: true}"
                                 required
                                 [disabled]="readMode">
                         </td>
@@ -61,7 +63,8 @@
                             type="text"
                             id="middleName"
                             class="form-control form-control-sm"
-                            formControlName="middleName"
+                            [(ngModel)]="record.middleName"
+                            [ngModelOptions]="{standalone: true}"
                             [disabled]="readMode">
                         </td>
                         <td>
@@ -69,7 +72,8 @@
                             type="text"
                             id="lastName"
                             class="form-control form-control-sm"
-                            formControlName="lastName"
+                            [(ngModel)]="record.lastName"
+                            [ngModelOptions]="{standalone: true}"
                             [disabled]="readMode">
                         </td>
                         <td>
@@ -77,7 +81,8 @@
                                 type="text"
                                 id="gender"
                                 class="form-control form-control-sm"
-                                formControlName="gender"
+                                [(ngModel)]="record.gender"
+                                [ngModelOptions]="{standalone: true}"
                                 [disabled]="readMode">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -87,13 +92,6 @@
                 </tbody>
             </table>
         </div>
-
-       <!--  <p>
-          Form Status: {{ employeesForm.status }}
-        </p>
-        <p>
-            Form Status: {{ employeesForm.value }}
-        </p> -->
      </div>
     
 </form>

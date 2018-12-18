@@ -31,6 +31,18 @@ select{
     padding-bottom: 20px;
 }
 
+.mainselector{
+    font-weight: bold;
+}
+
+.mainselector .custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: firebrick;
+}
+
 .btn-crud{
     border: 1px solid rgba(220, 226, 230, 0.726);
     background-color: white;
