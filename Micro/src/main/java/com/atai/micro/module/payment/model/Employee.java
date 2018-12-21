@@ -24,6 +24,29 @@ public class Employee  implements Model<String> {
 	private String firstName;
 	@Column(name = "middle_names")
 	private String middleNames;
+	@Column(name = "last_name")
+	private String lastName;
+	@Column(name = "nic_no")
+	private String nicNo;
+	@Column(name = "date_of_birth")
+	private Date dateOfBirth;
+	@Column(name = "civil_status")
+	private String civilStatus;
+	@Column(name = "house_no")
+	private String houseNo;
+	@Column(name = "street_address")
+	private String streetAddress;
+	@Column(name = "city_cbo")
+	private String cityCbo;
+	@Column(name = "mobile_no")
+	private String   mobileNo;
+	@Column(name = "land_phone_no")
+	private String  landPhoneNo;
+	private String password;
+	private String title;
+	private String gender;
+	private String email;
+	
 	public String getUserType() {
 		return userType;
 	}
@@ -137,29 +160,6 @@ public class Employee  implements Model<String> {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	@Column(name = "last_name")
-	private String lastName;
-	@Column(name = "nic_no")
-	private String nicNo;
-	@Column(name = "date_of_birth")
-	private Date dateOfBirth;
-	@Column(name = "civil_status")
-	private String civilStatus;
-	@Column(name = "house_no")
-	private String houseNo;
-	@Column(name = "street_address")
-	private String streetAddress;
-	@Column(name = "city_cbo")
-	private String cityCbo;
-	@Column(name = "mobile_no")
-	private String   mobileNo;
-	@Column(name = "land_phone_no")
-	private String  landPhoneNo;
-	private String password;
-	private String title;
-	private String gender;
-	private String email;
 	public String getMobileNo() {
 		return mobileNo;
 	}
@@ -192,7 +192,7 @@ public class Employee  implements Model<String> {
 	}
 
 	private void setUserName(String userName) {
-		this.userName = userName;
+		this.userName = userName.toUpperCase();
 	}
 
 	/*private String getUserType() {
