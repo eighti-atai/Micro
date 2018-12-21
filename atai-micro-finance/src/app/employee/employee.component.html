@@ -17,7 +17,7 @@
     </tr>
 </table>
 
-<form #f="ngForm" (ngSubmit)="baseService.onSubmit();" >
+<form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
             <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
@@ -156,7 +156,7 @@
         </div>
     </div>
     
-    <div class="row blockstyle group-block" style="margin-top: 10px">
+    <div class="row blockstyle group-block" style="margin-top: 10px" >
 
         <div class="col-md-3">
             <div class="form-group">
@@ -195,7 +195,8 @@
             <div class="form-group">
                     <label for="password">Password</label>
                     <input 
-                        type="text"
+                        type="password"
+                        autocomplete="new-password"
                         id="password"
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.password"
