@@ -79,11 +79,4 @@ export class EmployeeComponent implements OnInit {
   create(): void {
     
   }
-  save(){
-    this.baseService.onSubmit();
-  }
-
-  setFormPristine(status){
-    alert(status);
-  }
 }
