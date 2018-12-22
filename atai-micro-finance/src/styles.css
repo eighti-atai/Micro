@@ -33,15 +33,29 @@ select{
 
 .mainselector{
     font-weight: bold;
+    position: relative;
 }
 
-.mainselector .custom-select select {
+.mainselector select {
     display: none; /*hide original SELECT element:*/
 }
 
-.select-selected {
-    background-color: firebrick;
-}
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+  }
+
+  /*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
 
 .btn-crud{
     border: 1px solid rgba(220, 226, 230, 0.726);
