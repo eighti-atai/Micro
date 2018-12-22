@@ -1,23 +1,23 @@
 <table>
     <tr class="col-md-2">
         <td><h3>Employee</h3></td>
-    <td>    
-        <select 
-            type="text"
-            id="title"
-            class="form-control form-control-sm mainbackgound mainselector select-selected"
-            [(ngModel)]="baseService.headerobjid"
-            (ngModelChange)="baseService.reload(baseService.headerobjid)"
-            name="title">
-            <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
-                {{record.id}} - {{record.firstName}} 
-            </option>
-        </select>
-    </td>
+        <td> 
+            <select 
+                type="text"
+                id="title"
+                class="mainbackgound mainselector form-control form-control-sm"
+                [(ngModel)]="baseService.headerobjid"
+                (ngModelChange)="baseService.reload(baseService.headerobjid)"
+                name="title">
+                <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
+                    {{record.id}} - {{record.firstName}} 
+                </option>
+            </select>
+        </td>
     </tr>
 </table>
 
-<form #f="ngForm" (ngSubmit)="baseService.onSubmit();" >
+<form #f="ngForm" (ngSubmit)="save();" >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
             <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
@@ -29,11 +29,11 @@
             <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">delete</i>
             </button>
-            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
+            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" [disabled] = "baseService.getSaving()">Save</button>
             <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
         </div>
         <div class="col-md-1">
-                <button class="btn btn-default">Details</button>
+            <button class="btn btn-default">Details</button>
         </div>
        
     </div>
