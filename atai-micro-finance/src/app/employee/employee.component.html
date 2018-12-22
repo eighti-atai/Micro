@@ -17,7 +17,8 @@
     </tr>
 </table>
 
-<form #f="ngForm" (ngSubmit)="save();" >
+
+<form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
             <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
@@ -45,30 +46,18 @@
                     type="text"
                     id="title"
                     class="form-control form-control-sm"
-                    [ngModel]="defaultTitle"
+                    [(ngModel)]="baseService.record.title"
                     name="title"
                     required
                     [disabled]="readMode">
                     <option value="mr">Mr</option>
                     <option value="mrs">Mrs</option>
-                    <option value="master">Master</option>
+                    <option value="master">Rev</option>
                     <option value="miss">Miss</option>
                 </select>
             </div>
         </div>
-        <div class="col-md-3">
-            <div class="form-group">
-                <label for="userName">User Name</label>
-                <input 
-                    type="text"
-                    id="userName"
-                    class="form-control form-control-sm"
-                    [(ngModel)]="baseService.record.id"
-                    name="userName"
-                    required
-                    [disabled]="readMode">
-            </div>
-        </div>
+        
         <div class="col-md-3">
             <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -89,7 +78,7 @@
                     type="text"
                     id="middleName"
                     class="form-control form-control-sm"
-                    ngModel
+                    [(ngModel)]="baseService.record.middleNames"
                     name="middleName"
                     [disabled]="readMode">
             </div>
@@ -101,8 +90,33 @@
                         type="text"
                         id="lastname"
                         class="form-control form-control-sm"
-                        ngModel
+                        [(ngModel)]="baseService.record.lastName"
                         name="lastname"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="nicNo">NIC No</label>
+                    <input 
+                        type="text"
+                        id="nicNo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.nicNo"
+                        name="nicNo"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="dateOfBirth">DoB</label>
+                    <input 
+                        type="date"
+                        id="dateOfBirth"
+                        class="form-control form-control-sm"
+                        [ngModel]="baseService.record.dateOfBirth| date:'yyyy-MM-dd'"
+                        [(ngModel)]="baseService.record.dateOfBirth"
+                        name="dateOfBirth"
                         [disabled]="readMode">
             </div>
         </div>
@@ -113,7 +127,7 @@
                     type="text"
                     id="gender"
                     class="form-control form-control-sm"
-                    ngModel
+                    [(ngModel)]="baseService.record.gender"
                     name="gender"
                     [disabled]="readMode">
                     <option value="male">Male</option>
@@ -122,6 +136,151 @@
             </div>
             
         </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="civilStatus">Civil Status</label>
+                <select 
+                    type="text"
+                    id="civilStatus"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.civilStatus"
+                    name="civilStatus"
+                    [disabled]="readMode">
+                    <option value="single">single</option>
+                    <option value="married">Married</option>
+                    <option value="widowed">Widowed</option>
+                    <option value="divorced">Divorced</option>
+                    <option value="separated">Separated </option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="row blockstyle group-block" style="margin-top: 10px" >
+
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="userType">User Type</label>
+                <select 
+                    type="text"
+                    id="userType"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.userType"
+                    name="userType"
+                    [disabled]="readMode">
+                    <option value="administrator">Administrator</option>
+                    <option value="normal">Normal</option>
+
+                </select>
+            </div>
+            
+        </div>
+        
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="userName">User Name</label>
+                <input 
+                    type="text"
+                    style="text-transform:uppercase"
+                    id="userName"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.id"
+                    name="userName"
+                    required
+                    [disabled]="readMode">
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password"
+                        autocomplete="new-password"
+                        id="password"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.password"
+                        name="password"
+                        [disabled]="readMode">
+            </div>
+        </div>
+    </div>
+
+    <div class="row blockstyle group-block" style="margin-top: 10px">
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="houseNo">House No</label>
+                    <input 
+                        type="text"
+                        id="houseNo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.houseNo"
+                        name="houseNo"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="streetAddress">Street Address</label>
+                    <input 
+                        type="text"
+                        id="streetAddress"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.streetAddress"
+                        name="streetAddress"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="cityCbo">City/Cbo</label>
+                    <input 
+                        type="text"
+                        id="cityCbo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.cityCbo"
+                        name="cityCbo"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="mobileNo">Mobile No</label>
+                    <input 
+                        type="text"
+                        id="mobileNo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.mobileNo"
+                        name="mobileNo"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="landPhoneNo">Land Phone No</label>
+                    <input 
+                        type="text"
+                        id="landPhoneNo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.landPhoneNo"
+                        name="landPhoneNo"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="email">Email</label>
+                    <input 
+                        type="text"
+                        id="email"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.email"
+                        name="email"
+                        [disabled]="readMode">
+            </div>
+        </div>
+        
         <hr>
     </div>
 </form>
