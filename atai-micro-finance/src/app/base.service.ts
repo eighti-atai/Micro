@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 //import { HttpClientModule } from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { EventEmitter } from '@angular/core';
 //import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,15 +21,17 @@ export class BaseService {
   recordsArr;
   records;
   emptyrecords;
-  submitted = false;
+  submitted = true;
   fieldeditable = false;
   lastobjid = null;
   lastindex = 0;
   headerobjid;
   emptyRecord;
   private baseUrl;
-  //private handleError: HandleError;
-
+  
+   //private handleError: HandleError;
+  private saveSubject = new BehaviorSubject<string>("success");
+  saveObservable = this.saveSubject.asObservable();
   //constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandler) {
     //this.handleError = httpErrorHandler.createHandleError('BaseService');
     constructor(private http: HttpClient) {
@@ -103,6 +106,7 @@ export class BaseService {
 
   onSubmit() {
     //this.submitted = true;
+    this.submitted = false;
     this.save(); 
   }
 
@@ -139,7 +143,7 @@ export class BaseService {
     this.fieldeditable = false;
     this.record = this.oldRecord;
   }
-  save() {
+  save(){
     if(this.record.objid == null){
       this.createObject(this.record)
       .subscribe((data) => {
@@ -149,6 +153,8 @@ export class BaseService {
           this.headerobjid    = data.objid;
           this.fieldeditable  = false;
           this.recordsArr.push(this.record );
+          this.submitted = true;
+          this.saveSubject.next("success");
         }
         //this.reloadAll();  
       }, (error) => {
@@ -164,6 +170,8 @@ export class BaseService {
           this.record         = data;
           this.lastobjid      = data.objid;
           this.fieldeditable  = false;
+          this.submitted = true;
+          this.saveSubject.next("success");
         }
         //this.search(this.lastobjid );
       }, (error) => {
