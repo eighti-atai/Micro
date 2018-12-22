@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { NgForm, FormControl, FormGroup } from '@angular/forms';
+import { Observable, Subscription } from 'rxjs';
 
 import { Employee } from './employee';
 import { BaseService } from '../base.service';
+
 
 
 @Component({
@@ -19,7 +20,8 @@ export class EmployeeComponent implements OnInit {
   readMode = true;
   defaultTitle = "mr";
   defaultName = "";
-  //record: any;
+  myform: any;
+  saveSubscription: Subscription;
 
   record: Employee = new Employee();
   oldRecord: Employee = new Employee();
@@ -28,12 +30,26 @@ export class EmployeeComponent implements OnInit {
   records: Observable<Employee[]>;
   submitted = false;
   lastobjid = null;
+  saving: boolean = true;
   constructor(private baseService: BaseService) { }
 
   ngOnInit() {
     //this.record = {objid: "p3x5"};
     this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
     this.baseService.reloadAll();
+    this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
+      if(result === "success"){
+        this.myform = this.employeeForm.value;
+        this.employeeForm.reset(this.myform);
+      }
+      else{
+        alert("Error Occurred trying to Save the record");
+      }
+    });
+  }
+
+  ngOnDestroy(){
+    this.saveSubscription.unsubscribe();
   }
   onNew(){
     this.new = true;
@@ -62,5 +78,12 @@ export class EmployeeComponent implements OnInit {
 
   create(): void {
     
+  }
+  save(){
+    this.baseService.onSubmit();
+  }
+
+  setFormPristine(status){
+    alert(status);
   }
 }
