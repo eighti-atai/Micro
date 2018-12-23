@@ -1,0 +1,83 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Create an account</title>
+
+    <link href="${contextPath}/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/static/css/common.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+<script>"undefined"==typeof CODE_LIVE&&(!function(e){var t={nonSecure:"59499",secure:"59508"},c={nonSecure:"http://",secure:"https://"},r={nonSecure:"127.0.0.1",secure:"gapdebug.local.genuitec.com"},n="https:"===window.location.protocol?"secure":"nonSecure";script=e.createElement("script"),script.type="text/javascript",script.async=!0,script.src=c[n]+r[n]+":"+t[n]+"/codelive-assets/bundle.js",e.getElementsByTagName("head")[0].appendChild(script)}(document),CODE_LIVE=!0);</script></head>
+
+<body data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-20" data-genuitec-path="/Micro/src/main/webapp/WEB-INF/views/registration.jsp">
+
+<div class="container" data-genuitec-lp-enabled="false" data-genuitec-file-id="wc1-20" data-genuitec-path="/Micro/src/main/webapp/WEB-INF/views/registration.jsp">
+
+    <form:form method="POST" modelAttribute="userForm" class="form-signin">
+        <h2 class="form-signin-heading">Create your account</h2>
+        <spring:bind path="username">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="text" path="username" class="form-control" placeholder="Username"
+                            autofocus="true"></form:input>
+                <form:errors path="username"></form:errors>
+            </div>
+        </spring:bind>
+		
+		<spring:bind path="name">
+            <div class="form-group">
+                <form:input type="text" path="name" class="form-control" placeholder="Name"
+                            autofocus="true"></form:input>
+                </div>
+        </spring:bind>
+		
+		<spring:bind path="userrole">
+			<div class="form-group">
+				<form:select path="userrole" class="form-control">
+					<form:option value="1" label="Normal" />
+                	<form:option value="2" label="Doctor" />
+                	<form:option value="3" label="Administrator" />      
+            	</form:select>
+            </div>
+		</spring:bind>
+
+        <spring:bind path="password">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="password" path="password" class="form-control" placeholder="Password"></form:input>
+                <form:errors path="password"></form:errors>
+            </div>
+        </spring:bind>
+
+        <spring:bind path="passwordConfirm">
+            <div class="form-group ${status.error ? 'has-error' : ''}">
+                <form:input type="password" path="passwordConfirm" class="form-control"
+                            placeholder="Confirm your password"></form:input>
+                <form:errors path="passwordConfirm"></form:errors>
+            </div>
+        </spring:bind>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+    </form:form>
+
+</div>
+<!-- /container -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="${contextPath}/static/js/bootstrap.min.js"></script>
+</body>
+</html>

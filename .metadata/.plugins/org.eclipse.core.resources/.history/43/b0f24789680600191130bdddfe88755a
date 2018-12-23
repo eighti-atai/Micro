@@ -1,0 +1,11 @@
+package com.atai.dental.module.payment.dao;
+
+import org.springframework.stereotype.Repository;
+
+import com.atai.dental.generic.dao.AbstractDao;
+import com.atai.dental.module.payment.model.Cbo;
+
+@Repository
+public class CboDao extends AbstractDao<String, Cbo>{
+
+}
