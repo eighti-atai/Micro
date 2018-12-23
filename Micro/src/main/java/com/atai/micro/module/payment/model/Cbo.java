@@ -40,9 +40,9 @@ public class Cbo {
 	private Date startDate;
 	@Column(name = "meeting_day")
 	private String meetingDay;
-	 @Temporal(TemporalType.TIME)
+	// @Temporal(TemporalType.TIME)
 	@Column(name = "meeting_time")
-	private Date meetingTime;
+	private String meetingTime;
 	@Column(name = "ds_office")
     private String dsOffice;
 	
@@ -136,10 +136,10 @@ public class Cbo {
 	public void setMeetingDay(String meetingDay) {
 		this.meetingDay = meetingDay;
 	}
-	public Date getMeetingTime() {
+	public String getMeetingTime() {
 		return meetingTime;
 	}
-	public void setMeetingTime(Date meetingTime) {
+	public void setMeetingTime(String meetingTime) {
 		this.meetingTime = meetingTime;
 	}
 	public String getId() {
