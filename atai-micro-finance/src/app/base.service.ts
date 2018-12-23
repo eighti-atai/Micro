@@ -113,7 +113,9 @@ export class BaseService {
   create(emptyrecords:any): void {
     this.fieldeditable  = true;
     this.oldRecord = Object.assign({}, this.record);
-    this.lastobjid      = this.record.objid;
+    if(this.record !== undefined ){
+      this.lastobjid      = this.record.objid;
+    }
     this.record         = emptyrecords;
   }
 
@@ -243,8 +245,10 @@ export class BaseService {
       this.recordsArr = data;
       if (this.lastobjid == null){
         this.record = data[0];
-        this.headerobjid = this.record.objid;
-        this.lastobjid = this.record.objid;
+        if(this.record !== undefined ){
+          this.headerobjid = this.record.objid;
+          this.lastobjid = this.record.objid;
+        }
       }
       else{
         this.reload(this.lastobjid);

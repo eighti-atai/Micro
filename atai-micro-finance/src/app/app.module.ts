@@ -12,6 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CboComponent } from './cbo/cbo.component';
 
 
 
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     SampleComponentComponent,
     EmployeeComponent,
     HomeComponent,
-    EmployeesComponent
+    EmployeesComponent,
+    CboComponent
   ],
   imports: [
     BrowserModule,

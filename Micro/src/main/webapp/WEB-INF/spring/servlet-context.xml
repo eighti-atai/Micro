@@ -72,7 +72,7 @@
 				<value>com.atai.micro.module.enterp.model.Role</value>
 				<value>com.atai.micro.module.enterp.model.DoctorLov</value>
 				<value>com.atai.micro.module.payment.model.Employee</value>
-				
+				<value>com.atai.micro.module.payment.model.Cbo</value>
 				
 				
 			</list>

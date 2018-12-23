@@ -1,0 +1,281 @@
+<table>
+  <tr class="col-md-2">
+      <td><h3>Employee</h3></td>
+      <td> 
+          <select 
+              type="text"
+              id="title"
+              class="mainbackgound mainselector form-control form-control-sm"
+              [(ngModel)]="baseService.headerobjid"
+              (ngModelChange)="baseService.reload(baseService.headerobjid)"
+              name="title">
+              <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
+                  {{record.cboCode}} - {{record.cboName}} 
+              </option>
+          </select>
+      </td>
+  </tr>
+</table>
+
+
+<form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
+  <div class="row mainbuttonpanel">
+      <div class="col-md-3">
+          <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">add</i>
+          </button>   
+          <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">edit</i>
+          </button>
+          <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">delete</i>
+          </button>
+          <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
+          <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
+      </div>
+      <div class="col-md-1">
+          <button class="btn btn-default">Details</button>
+      </div>
+     
+  </div>
+  <div class="row blockstyle group-block">
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="brnachId">Brnach</label>
+              <select 
+                  type="text"
+                  id="brnachId"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="baseService.record.brnachId"
+                  name="brnachId"
+                  required
+                  [disabled]="readMode">
+                  <option value="mr">A</option>
+                  <option value="mrs">Mrs</option>
+                  <option value="master">Rev</option>
+                  <option value="miss">Miss</option>
+              </select>
+          </div>
+      </div>
+      
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="creditOfficer">Credit Officer</label>
+              <input 
+                  type="text"
+                  id="creditOfficer"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="baseService.record.creditOfficer"
+                  name="creditOfficer"
+                  required
+                  [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="meetingFrequency">Meeting Frequency</label>
+            <select 
+                type="text"
+                id="meetingFrequency"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.meetingFrequency"
+                name="meetingFrequency"
+                required
+                [disabled]="readMode">
+                <option value="weekly">Weekly</option>
+                <option value="byweekly">Byweekly</option>
+                <option value="monthly">Monthly</option>
+                <option value="daily">Daily</option>
+                <option value="bidaily">Bidaily</option>
+                <option value="daily6days">Daily 6 Days</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="cboName">CBO Name</label>
+              <input 
+                  type="text"
+                  id="cboName"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="baseService.record.cboName"
+                  name="cboName"
+                  [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="cboCode">CBO Code</label>
+            <input 
+                type="text"
+                id="cboCode"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.cboCode"
+                name="cboCode"
+                [disabled]="readMode">
+        </div>
+      </div>
+    </div>
+  
+    <div class="row blockstyle group-block" style="margin-top: 10px" >
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="province">Province</label>
+            <select 
+                type="text"
+                id="province"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.province"
+                name="province"
+                required
+                [disabled]="readMode">
+                <option value="Eastern">Eastern Province</option>
+                <option value="Central">Central Province</option>
+                <option value="Nothern">Nothern Province</option>
+                <option value="NorthCentral">North Central Province</option>
+                
+                <option value="NorthWestern">North Western Province</option>
+                <option value="Nothern">Nothern Province</option>
+                <option value="Sabaragamuwa">Sabaragamuwa Province</option>
+                <option value="Southern">Southern Province</option>
+                <option value="Uva">Uva Province</option>
+                <option value="Western">Western Province</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="district">District</label>
+            <select 
+                type="text"
+                id="district"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.district"
+                name="district"
+                required
+                [disabled]="readMode">
+                <option value="kandy">Kandy</option>
+                <option value="colombo">Colombo</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="dsOffice">DS Office</label>
+            <select 
+                type="text"
+                id="dsOffice"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.dsOffice"
+                name="dsOffice"
+                required
+                [disabled]="readMode">
+                <option value="ds1">DS 1</option>
+                <option value="ds2">DS 2</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="gsDevision">GS Devision</label>
+            <select 
+                type="text"
+                id="gsDevision"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.gsDevision"
+                name="gsDevision"
+                required
+                [disabled]="readMode">
+                <option value="gs1">GS 1</option>
+                <option value="gs2">GS 2</option>
+            </select>
+        </div>
+      </div>
+    </div>
+  
+    <div class="row blockstyle group-block" style="margin-top: 10px" >
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="address1">Address1</label>
+                  <input 
+                      type="text"
+                      id="address1"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.address1"
+                      name="address1"
+                      [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+                <label for="address2">Address2</label>
+                <input 
+                    type="text"
+                    id="address2"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.address2"
+                    name="address2"
+                    [disabled]="readMode">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+                <label for="address3">Address3</label>
+                <input 
+                    type="text"
+                    id="address3"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.address3"
+                    name="address3"
+                    [disabled]="readMode">
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="startDate">Start Date</label>
+                  <input 
+                      type="date"
+                      id="startDate"
+                      class="form-control form-control-sm"
+                      [ngModel]="baseService.record.startDate| date:'yyyy-MM-dd'"
+                      [(ngModel)]="baseService.record.startDate"
+                      name="startDate"
+                      [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="meetingDay">Meeting Day</label>
+            <select 
+                type="text"
+                id="meetingDay"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.record.meetingDay"
+                name="meetingDay"
+                required
+                [disabled]="readMode">
+                <option value="monday">Monday</option>
+                <option value="tuesday">Tuesday</option>
+                <option value="wednesday">Wednesday</option>
+                <option value="thursday">Thursday</option>
+                <option value="friday">Friday</option>
+                <option value="saturday">Saturday</option>
+                <option value="sunday">Sunday</option>
+            </select>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+                <label for="meetingTime">Start Date</label>
+                <input 
+                    type="date"
+                    id="meetingTime"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.meetingTime"
+                    name="meetingTime"
+                    [disabled]="readMode">
+        </div>
+      </div>
+      <hr>
+  </div>
+</form>
