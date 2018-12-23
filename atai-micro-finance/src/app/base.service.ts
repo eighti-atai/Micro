@@ -138,6 +138,7 @@ export class BaseService {
       if (data === null){
         this.fieldeditable  = false;
         this.reloadByIndex(this.lastindex-1);
+
         this.recordsArr.splice(this.lastindex,1);
       }
     }, (error) => {
@@ -225,9 +226,10 @@ export class BaseService {
   reloadByIndex(index: number) {
     var count     = 0;
     var tmpindex  = 0;
+    //alert(index);
     if(index < 0)
     {
-      tmpindex = 0;
+      tmpindex = 1;
     }
     else
     {

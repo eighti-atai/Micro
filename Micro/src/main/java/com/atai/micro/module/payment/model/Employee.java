@@ -192,7 +192,7 @@ public class Employee  implements Model<String> {
 	}
 
 	private void setUserName(String userName) {
-		this.userName = userName;
+		this.userName = userName.toUpperCase();
 	}
 
 	/*private String getUserType() {

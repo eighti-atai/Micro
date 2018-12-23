@@ -41,7 +41,7 @@
     <div class="row blockstyle group-block">
         <div class="col-md-3">
             <div class="form-group">
-                <label for="title">Title</label>
+                <label for="title">*Title</label>
                 <select 
                     type="text"
                     id="title"
@@ -60,7 +60,7 @@
         
         <div class="col-md-3">
             <div class="form-group">
-                <label for="firstName">First Name</label>
+                <label for="firstName">*First Name</label>
                 <input 
                     type="text"
                     id="firstName"
@@ -85,25 +85,27 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                    <label for="lastname">Last Name</label>
+                    <label for="lastname">*Last Name</label>
                     <input 
                         type="text"
                         id="lastname"
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.lastName"
                         name="lastname"
+                        required
                         [disabled]="readMode">
             </div>
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                    <label for="nicNo">NIC No</label>
+                    <label for="nicNo">*NIC No</label>
                     <input 
                         type="text"
                         id="nicNo"
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.nicNo"
                         name="nicNo"
+                        required
                         [disabled]="readMode">
             </div>
         </div>
@@ -122,13 +124,14 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="gender">Gender</label>
+                <label for="gender">*Gender</label>
                 <select 
                     type="text"
                     id="gender"
                     class="form-control form-control-sm"
                     [(ngModel)]="baseService.record.gender"
                     name="gender"
+                    required
                     [disabled]="readMode">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -138,13 +141,14 @@
         </div>
         <div class="col-md-3">
             <div class="form-group">
-                <label for="civilStatus">Civil Status</label>
+                <label for="civilStatus">*Civil Status</label>
                 <select 
                     type="text"
                     id="civilStatus"
                     class="form-control form-control-sm"
                     [(ngModel)]="baseService.record.civilStatus"
                     name="civilStatus"
+                    required
                     [disabled]="readMode">
                     <option value="single">single</option>
                     <option value="married">Married</option>
@@ -161,13 +165,14 @@
 
         <div class="col-md-3">
             <div class="form-group">
-                <label for="userType">User Type</label>
+                <label for="userType">*User Type</label>
                 <select 
                     type="text"
                     id="userType"
                     class="form-control form-control-sm"
                     [(ngModel)]="baseService.record.userType"
                     name="userType"
+                    required
                     [disabled]="readMode">
                     <option value="administrator">Administrator</option>
                     <option value="normal">Normal</option>
@@ -179,7 +184,7 @@
         
         <div class="col-md-3">
             <div class="form-group">
-                <label for="userName">User Name</label>
+                <label for="userName">*User Name</label>
                 <input 
                     type="text"
                     style="text-transform:uppercase"
@@ -194,7 +199,7 @@
 
         <div class="col-md-3">
             <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password">*Password</label>
                     <input 
                         type="password"
                         autocomplete="new-password"
@@ -202,6 +207,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.password"
                         name="password"
+                        required
                         [disabled]="readMode">
             </div>
         </div>
