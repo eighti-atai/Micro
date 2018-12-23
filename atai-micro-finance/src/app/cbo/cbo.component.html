@@ -1,6 +1,6 @@
 <table>
   <tr class="col-md-2">
-      <td><h3>Employee</h3></td>
+      <td><h3>CBO</h3></td>
       <td> 
           <select 
               type="text"
@@ -61,14 +61,20 @@
       <div class="col-md-3">
           <div class="form-group">
               <label for="creditOfficer">Credit Officer</label>
-              <input 
+              <select 
                   type="text"
                   id="creditOfficer"
                   class="form-control form-control-sm"
                   [(ngModel)]="baseService.record.creditOfficer"
+                  (focus)="onLovList()"
                   name="creditOfficer"
                   required
                   [disabled]="readMode">
+                  <option *ngFor="let record of employeeList  " value="{{record.id}}">
+                    {{record.id}}-{{record.firstName}} {{record.middleName}} {{record.lastName}} 
+                </option>
+                </select>
+                  
           </div>
       </div>
       <div class="col-md-3">

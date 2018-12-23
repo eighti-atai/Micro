@@ -73,6 +73,13 @@ export class BaseService {
       );
   }
 
+  getSpecificObjectList(entityType : String): Observable<any> {
+    return this.http.get(`${ 'http://localhost:8080/Micro/'+entityType+'/'}`)
+    .pipe( 
+     // catchError(this.handleError('Populate '))
+      );
+  }
+
   deleteObject(objid: String): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${objid}`,httpOptions)
     .pipe( 
@@ -292,6 +299,9 @@ export class BaseService {
 
     }
     return false;
-}
-  
+  }
+
+  getOtherEntityData(entityType:String) {
+    return this.getSpecificObjectList(entityType);
+  }
 }

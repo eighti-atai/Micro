@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Cbo } from './cbo';
 import { BaseService } from '../base.service';
+import { Employee } from '../employee/employee';
 
 
 
@@ -31,6 +32,7 @@ export class CboComponent implements OnInit {
   submitted = false;
   lastobjid = null;
   saving: boolean = true;
+  employeeList : Employee[];
   constructor(private baseService: BaseService) { 
      // this.record = {objid};
   }
@@ -39,6 +41,7 @@ export class CboComponent implements OnInit {
     //this.record = {objid: "p3x5"};
     this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
     this.baseService.reloadAll();
+    this.onLovList();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
         this.myform = this.cboForm.value;
@@ -80,6 +83,14 @@ export class CboComponent implements OnInit {
 
   create(): void {
     
+  }
+
+  onLovList():void
+  {
+    //console.error('dddddddddddd');
+    this.baseService.getOtherEntityData('Employee').subscribe(result => {
+      this.employeeList =  result;
+    });
   }
 }
 
