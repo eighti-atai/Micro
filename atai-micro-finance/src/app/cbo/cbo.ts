@@ -1,6 +1,6 @@
 export class Cbo {
     brnachId: String;
-    //firstName: string;
+    firstName: string;
     //patientContactNo: string;
     //email: string;
     objid: string;

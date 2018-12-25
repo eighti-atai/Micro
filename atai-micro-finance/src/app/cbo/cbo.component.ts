@@ -90,10 +90,11 @@ export class CboComponent implements OnInit {
   onLovList():void
   {
     this.employee = this.baseService.getOtherEntityData('Employee');
-    let element: HTMLElement = document.getElementById('creditOfficer') as HTMLElement;
-    if (typeof element.onclick == "function") {
+    //let element: HTMLElement = document.getElementById('creditOfficer') as HTMLElement;
+    //element.ontouchend
+   /* if (typeof element.onclick == "function") {
       element.onclick.apply(element);
-  }
+  }*/
     //element.click();
    // console.error('gggggg');
     

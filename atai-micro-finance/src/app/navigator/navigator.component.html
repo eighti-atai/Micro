@@ -3,21 +3,26 @@
 <p>Content...</p> -->
 
 <div class="sidenav" ngClass = "{'hide': open}">
-    <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">Admin
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">Admin
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-container" [ngClass] = "{'hide': hide}">
       <a routerLink = "/branch" >System Config</a>
     </div>
-  <div routerLinkActive="active">
-    <a routerLink = "/employee" >Employee</a>
-  </div>
-  <div routerLinkActive="active">
-    <a routerLink="/employees">Employees</a>
-  </div>
-  <div routerLinkActive="active">
-    <a routerLink="/cbo">Cbo</a>
-  </div>
+  
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">User Creation
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+      <a routerLink = "/employee" >Employee</a>
+      <a routerLink = "/employees" >Employees</a>
+    </div>
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">CBO Management
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+      <a routerLink = "/cbo" >CBO</a>
+    </div>
   <div routerLinkActive="active">
     <a routerLink="/sample">Services</a>
   </div>
@@ -27,13 +32,6 @@
   <div routerLinkActive="active">
     <a href="#contact">Contact</a>
   </div>
-  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">Dropdown
-    <i class="fa fa-caret-down"></i>
-  </button>
-  <div class="dropdown-container" [ngClass] = "{'hide': hide}">
-    <a routerLink = "/employee" >Employee</a>
-    <a href="#">Link 2</a>
-    <a href="#">Link 3</a>
-  </div>
+  
   <a href="#contact">Search</a>
 </div> 
