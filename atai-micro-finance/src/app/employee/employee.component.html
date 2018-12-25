@@ -21,17 +21,17 @@
 <form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
-            <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+            <button *ngIf="!baseService.getNew()" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">add</i>
             </button>   
-            <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+            <button *ngIf="(record.objid !==null) && !baseService.getEdit()" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">edit</i>
             </button>
             <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">delete</i>
             </button>
-            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" [disabled] = "baseService.getSaving()">Save</button>
-            <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
+            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
+            <button *ngIf="baseService.getCancel()" (click) = "onCancel()" class="btn btn-light">Cancel</button>
         </div>
         <div class="col-md-1">
             <button class="btn btn-default">Details</button>
@@ -49,7 +49,7 @@
                     [(ngModel)]="baseService.record.title"
                     name="title"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
                     <option value="mr">Mr</option>
                     <option value="mrs">Mrs</option>
                     <option value="master">Rev</option>
@@ -68,7 +68,7 @@
                     [(ngModel)]="baseService.record.firstName"
                     name="firstName"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -80,7 +80,7 @@
                     class="form-control form-control-sm"
                     [(ngModel)]="baseService.record.middleNames"
                     name="middleName"
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -93,7 +93,7 @@
                         [(ngModel)]="baseService.record.lastName"
                         name="lastname"
                         required
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -106,7 +106,7 @@
                         [(ngModel)]="baseService.record.nicNo"
                         name="nicNo"
                         required
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -119,7 +119,7 @@
                         [ngModel]="baseService.record.dateOfBirth| date:'yyyy-MM-dd'"
                         [(ngModel)]="baseService.record.dateOfBirth"
                         name="dateOfBirth"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -132,7 +132,7 @@
                     [(ngModel)]="baseService.record.gender"
                     name="gender"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -149,7 +149,7 @@
                     [(ngModel)]="baseService.record.civilStatus"
                     name="civilStatus"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
                     <option value="single">single</option>
                     <option value="married">Married</option>
                     <option value="widowed">Widowed</option>
@@ -173,7 +173,7 @@
                     [(ngModel)]="baseService.record.userType"
                     name="userType"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
                     <option value="administrator">Administrator</option>
                     <option value="normal">Normal</option>
 
@@ -193,7 +193,7 @@
                     [(ngModel)]="baseService.record.id"
                     name="userName"
                     required
-                    [disabled]="readMode">
+                    [disabled]="baseService.getReadMode()">
             </div>
         </div>
 
@@ -208,7 +208,7 @@
                         [(ngModel)]="baseService.record.password"
                         name="password"
                         required
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
     </div>
@@ -223,7 +223,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.houseNo"
                         name="houseNo"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -235,7 +235,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.streetAddress"
                         name="streetAddress"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -247,7 +247,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.cityCbo"
                         name="cityCbo"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -259,7 +259,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.mobileNo"
                         name="mobileNo"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -271,7 +271,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.landPhoneNo"
                         name="landPhoneNo"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         <div class="col-md-3">
@@ -283,7 +283,7 @@
                         class="form-control form-control-sm"
                         [(ngModel)]="baseService.record.email"
                         name="email"
-                        [disabled]="readMode">
+                        [disabled]="baseService.getReadMode()">
             </div>
         </div>
         

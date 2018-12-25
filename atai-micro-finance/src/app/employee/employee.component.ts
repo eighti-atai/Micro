@@ -13,7 +13,7 @@ import { BaseService } from '../base.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  @ViewChild('f') employeeForm : NgForm;
+  @ViewChild('f') form : NgForm;
   new: boolean = false;
   edit: boolean = false;
   cancel: boolean = false;
@@ -35,12 +35,12 @@ export class EmployeeComponent implements OnInit {
 
   ngOnInit() {
     //this.record = {objid: "p3x5"};
-    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
+    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord, this.form);
     this.baseService.reloadAll();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
-        this.myform = this.employeeForm.value;
-        this.employeeForm.reset(this.myform);
+        this.myform = this.form.value;
+        this.form.reset(this.myform);
       }
       else{
         alert("Error Occurred trying to Save the record");
@@ -52,28 +52,34 @@ export class EmployeeComponent implements OnInit {
     this.saveSubscription.unsubscribe();
   }
   onNew(){
-    this.new = true;
+   // this.myform = this.form.value;
+    /* this.new = true;
     this.edit = false;
     this.readMode = false;
-    this.cancel = true;
-    this.baseService.create(new Employee());
+    this.cancel = true; */
+    this.baseService.onNew(new Employee());
   }
   onEdit(){
-    this.edit = true;
+    //this.myform = this.form.value;
+    /* this.edit = true;
     this.new = false;
     this.readMode = false;
     console.log(this.employeeForm);
-    this.cancel = true;
-    this.baseService.edit()
+    this.cancel = true; */
+    this.baseService.onEdit();
   }
   onDelete(){
-    this.new = false;
-    this.edit = true;
-    this.baseService.delete(this.baseService.record.objid)
+    /* this.new = false;
+    this.edit = true; */
+    this.baseService.onDelete();
   }
   onCancel(){
-    this.cancel = false;
-    this.baseService.cancel()
+    /* this.cancel = false; */
+    this.myform = this.baseService.onCancel();
+    this.form.reset(this.myform);
+    /* this.readMode = true;
+    this.new = false;
+    this.edit = false; */
   }
 
   create(): void {

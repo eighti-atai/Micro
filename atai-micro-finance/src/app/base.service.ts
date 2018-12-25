@@ -4,6 +4,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { EventEmitter } from '@angular/core';
+import { NgForm } from '@angular/forms';
 //import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -28,6 +29,13 @@ export class BaseService {
   headerobjid;
   emptyRecord;
   private baseUrl;
+  form: NgForm;
+  oldForm: NgForm;
+  newForm: NgForm;
+  newMode: boolean = false;
+  editMode: boolean = false;
+  cancelMode: boolean = false;
+  readMode = true;
   
    //private handleError: HandleError;
   private saveSubject = new BehaviorSubject<string>("success");
@@ -37,7 +45,7 @@ export class BaseService {
     constructor(private http: HttpClient) {
    }
 
-  init(entity: String, record:any, recordsArr: any, records:any, oldRecord:any,searchRecord: any ){
+  init(entity: String, record:any, recordsArr: any, records:any, oldRecord:any,searchRecord: any, form : NgForm ){
     this.baseUrl = 'http://localhost:8080/Micro/'+entity+'/';
     this.record = record;
     this.recordsArr= recordsArr;
@@ -45,6 +53,7 @@ export class BaseService {
     this.emptyRecord = Object.assign({}, this.record); 
     this.oldRecord = oldRecord;
     this.searchRecord = searchRecord;
+    this.form = form;
   }
 
   
@@ -309,5 +318,53 @@ export class BaseService {
 
   getOtherEntityData(entityType:String, obj:Object) {
     return this.getSpecificObjectList(entityType,obj);
+  }
+
+  //---------------------- Command Button Hnadling ----------------------
+  onNew(newRec: any){
+    this.oldForm = this.form.value;
+    this.newMode = true;
+    this.editMode = false;
+    this.readMode = false;
+    this.cancelMode = true;
+    this.create(newRec);
+  }
+  onEdit(){
+    this.oldForm = this.form.value;
+    this.editMode = true;
+    this.newMode = false;
+    this.readMode = false;
+    this.cancelMode = true;
+    this.edit();
+  }
+  onDelete(){
+    this.newMode = false;
+    this.editMode = true;
+    this.delete(this.record.objid)
+  }
+  onCancel(): any{
+    this.cancelMode = false;
+    this.cancel();
+    //this.employeeForm.reset(this.myform);
+    this.readMode = true;
+    this.newMode = false;
+    this.editMode = false;
+    return this.oldForm;
+  }
+
+  getNew(): boolean{
+    return this.newMode;
+  }
+
+  getEdit(): boolean{
+    return this.editMode;
+  }
+
+  getReadMode(): boolean{
+    return this.readMode;
+  }
+
+  getCancel(): boolean{
+    return this.cancelMode;
   }
 }
