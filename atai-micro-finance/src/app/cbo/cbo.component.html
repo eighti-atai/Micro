@@ -50,10 +50,9 @@
                   name="brnachId"
                   
                   [disabled]="readMode">
-                  <option value="mr">A</option>
-                  <option value="mrs">Mrs</option>
-                  <option value="master">Rev</option>
-                  <option value="miss">Miss</option>
+                  <option *ngFor="let record of branches|async  " value="{{record.id}}">
+                    {{record.id}}-{{record.name}}
+                </option>
               </select>
           </div>
       </div>
@@ -70,7 +69,7 @@
                   name="creditOfficer"
                   
                   [disabled]="readMode">
-                  <option *ngFor="let record of employee|async  " value="{{record.id}}">
+                  <option *ngFor="let record of employees|async  " value="{{record.id}}">
                     {{record.id}}-{{record.firstName}} {{record.middleName}} {{record.lastName}} 
                 </option>
                 </select>

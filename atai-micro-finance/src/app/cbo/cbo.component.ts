@@ -34,7 +34,8 @@ export class CboComponent implements OnInit {
   lastobjid = null;
   saving: boolean = true;
   employeeList : Employee[];
-  employee : any;
+  employees : any;
+  branches : any;
   constructor(private baseService: BaseService) { 
      // this.record = {objid};
   }
@@ -89,7 +90,8 @@ export class CboComponent implements OnInit {
 
   onLovList():void
   {
-    this.employee = this.baseService.getOtherEntityData('Employee');
+    this.employees = this.baseService.getOtherEntityData('Employee',this.searchRecord);
+    this.branches = this.baseService.getOtherEntityData('Branch',this.searchRecord);
     //let element: HTMLElement = document.getElementById('creditOfficer') as HTMLElement;
     //element.ontouchend
    /* if (typeof element.onclick == "function") {

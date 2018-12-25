@@ -73,10 +73,14 @@ export class BaseService {
       );
   }
 
-  getSpecificObjectList(entityType : String): Observable<any> {
-    return this.http.get(`${ 'http://localhost:8080/Micro/'+entityType+'/'}`)
+  getSpecificObjectList(entityType : String,obj: Object): Observable<any> {
+    /*return this.http.get(`${ 'http://localhost:8080/Micro/'+entityType+'/'}`)
     .pipe( 
      // catchError(this.handleError('Populate '))
+      );*/
+      return  this.http.post(`${'http://localhost:8080/Micro/'+entityType}/Search/`,obj)
+    .pipe( 
+     // catchError(this.handleError('Search '))
       );
   }
 
@@ -303,7 +307,7 @@ export class BaseService {
     return false;
   }
 
-  getOtherEntityData(entityType:String) {
-    return this.getSpecificObjectList(entityType);
+  getOtherEntityData(entityType:String, obj:Object) {
+    return this.getSpecificObjectList(entityType,obj);
   }
 }
