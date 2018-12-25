@@ -3,6 +3,12 @@
 <p>Content...</p> -->
 
 <div class="sidenav" ngClass = "{'hide': open}">
+    <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">Admin
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+      <a routerLink = "/branch" >System Config</a>
+    </div>
   <div routerLinkActive="active">
     <a routerLink = "/employee" >Employee</a>
   </div>

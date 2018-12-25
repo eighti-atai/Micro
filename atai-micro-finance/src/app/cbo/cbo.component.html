@@ -59,24 +59,41 @@
       </div>
       
       <div class="col-md-3">
-          <div class="form-group">
+          <div class="form-group" (click)="onLovList()">
               <label for="creditOfficer">Credit Officer</label>
               <select 
                   type="text"
                   id="creditOfficer"
                   class="form-control form-control-sm"
                   [(ngModel)]="baseService.record.creditOfficer"
-                  (focus)="onLovList()"
+                  
                   name="creditOfficer"
                   
                   [disabled]="readMode">
-                  <option *ngFor="let record of employeeList  " value="{{record.id}}">
+                  <option *ngFor="let record of employee|async  " value="{{record.id}}">
                     {{record.id}}-{{record.firstName}} {{record.middleName}} {{record.lastName}} 
                 </option>
                 </select>
                   
           </div>
       </div>
+      <div class="col-md-3">
+        <div class="form-group">
+            <label for="creditOfficer">Credit Officer</label>
+            <div class="form-group" *ngFor="let record of employee|async">
+              <input class="form-check-input" 
+                  [(ngModel)]="baseService.record.creditOfficer" 
+                  name="{{ record.firstName }}" type="checkbox" 
+                  id="{{record.firstName}}" 
+                  (change)="onChangeCategory($event, cat)">
+              <label  for="{{record.firstName}}">
+                  {{record.firstName}}
+              </label>
+            </div>   
+        </div>
+      </div>
+
+      
       <div class="col-md-3">
         <div class="form-group">
             <label for="meetingFrequency">Meeting Frequency</label>
@@ -114,7 +131,7 @@
         <div class="form-group">
             <label for="cboCode">*CBO Code</label>
             <input 
-                type="text"
+                type="number"
                 id="cboCode"
                 class="form-control form-control-sm"
                 [(ngModel)]="baseService.record.cboCode"

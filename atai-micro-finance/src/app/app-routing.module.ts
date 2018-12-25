@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeesComponent } from './employees/employees.component';
 import { CboComponent } from './cbo/cbo.component';
+import { BranchComponent } from './branch/branch.component';
 //import { PatientComponent } from './patient/patient.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
     { path: 'employee', component: EmployeeComponent },
     { path: 'employees', component: EmployeesComponent },
     { path: 'cbo', component: CboComponent },
+    { path: 'branch', component: BranchComponent },
 
 ];
 

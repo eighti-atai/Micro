@@ -1,0 +1,165 @@
+<table>
+  <tr class="col-md-2">
+      <td><h3>Branch</h3></td>
+      <td> 
+          <select 
+              type="text"
+              id="title"
+              class="mainbackgound mainselector form-control form-control-sm"
+              [(ngModel)]="baseService.headerobjid"
+              (ngModelChange)="baseService.reload(baseService.headerobjid)"
+              name="title">
+              <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
+                  {{record.code.toUpperCase()}} - {{record.name}} 
+              </option>
+          </select>
+      </td>
+  </tr>
+</table>
+
+
+<form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
+  <div class="row mainbuttonpanel">
+      <div class="col-md-3">
+          <button *ngIf="!new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">add</i>
+          </button>   
+          <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">edit</i>
+          </button>
+          <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
+              <i class="material-icons md-18">delete</i>
+          </button>
+          <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
+          <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
+      </div>
+      <div class="col-md-1">
+          <button class="btn btn-default">Details</button>
+      </div>
+     
+  </div>
+  
+  <div class="row blockstyle group-block">
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="code">*Branch Code</label>
+              <input 
+                  type="text"
+                  id="code"
+                  class="form-control form-control-sm"
+                  style="text-transform:uppercase"
+                  [(ngModel)]="baseService.record.code"
+                  name="code"
+                  required
+                  [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+              <label for="name">*Branch Name</label>
+              <input 
+                  type="text"
+                  id="name"
+                  class="form-control form-control-sm"
+                  [(ngModel)]="baseService.record.name"
+                  name="name"
+                  required
+                  [disabled]="readMode">
+          </div>
+      </div>
+    </div>
+  
+    <div class="row blockstyle group-block" style="margin-top: 10px" >
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="address1">*Address1</label>
+                  <input 
+                      type="text"
+                      id="address1"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.address1"
+                      name="address1"
+                      required
+                      [disabled]="readMode">
+          </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+                <label for="address2">*Address2</label>
+                <input 
+                    type="text"
+                    id="address2"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.address2"
+                    name="address2"
+                    required
+                    [disabled]="readMode">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+                <label for="address3">*Address3</label>
+                <input 
+                    type="text"
+                    id="address3"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.address3"
+                    name="address3"
+                    required
+                    [disabled]="readMode">
+        </div>
+      </div>
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="city">City</label>
+                  <input 
+                      type="text"
+                      id="city"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.city"
+                      name="city"
+                      required
+                      [disabled]="readMode">
+          </div>
+      </div>  
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="phoneNo">Phone No</label>
+                  <input 
+                      type="text"
+                      id="phoneNo"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.phoneNo"
+                      name="phoneNo"
+                      
+                      [disabled]="readMode">
+          </div>
+      </div>  
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="email">E-mail</label>
+                  <input 
+                      type="text"
+                      id="email"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.email"
+                      name="email"
+                      
+                      [disabled]="readMode">
+          </div>
+      </div>  
+      <div class="col-md-3">
+          <div class="form-group">
+                  <label for="fax">Fax</label>
+                  <input 
+                      type="text"
+                      id="fax"
+                      class="form-control form-control-sm"
+                      [(ngModel)]="baseService.record.fax"
+                      name="fax"
+                      
+                      [disabled]="readMode">
+          </div>
+      </div>  
+    </div>
+</form>

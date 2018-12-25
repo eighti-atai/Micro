@@ -13,6 +13,7 @@ import { EmployeesComponent } from './employees/employees.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CboComponent } from './cbo/cbo.component';
+import { BranchComponent } from './branch/branch.component';
 
 
 
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
     EmployeeComponent,
     HomeComponent,
     EmployeesComponent,
-    CboComponent
+    CboComponent,
+    BranchComponent
   ],
   imports: [
     BrowserModule,

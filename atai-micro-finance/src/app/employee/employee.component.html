@@ -10,7 +10,7 @@
                 (ngModelChange)="baseService.reload(baseService.headerobjid)"
                 name="title">
                 <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
-                    {{record.id}} - {{record.firstName}} 
+                    {{record.id.toUpperCase()}} - {{record.firstName}} 
                 </option>
             </select>
         </td>
