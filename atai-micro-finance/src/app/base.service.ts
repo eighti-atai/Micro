@@ -367,4 +367,11 @@ export class BaseService {
   getCancel(): boolean{
     return this.cancelMode;
   }
+
+  setFormReadOnly(){
+    this.readMode = true;
+    this.newMode = false;
+    this.editMode = false;
+    this.cancelMode = false;
+  }
 }

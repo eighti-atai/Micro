@@ -41,6 +41,7 @@ export class EmployeeComponent implements OnInit {
       if(result === "success"){
         this.myform = this.form.value;
         this.form.reset(this.myform);
+        this.baseService.setFormReadOnly();
       }
       else{
         alert("Error Occurred trying to Save the record");
