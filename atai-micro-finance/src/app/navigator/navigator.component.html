@@ -3,24 +3,24 @@
 <p>Content...</p> -->
 
 <div class="sidenav" ngClass = "{'hide': open}">
-  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">Admin
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu(0)">Admin
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+    <div class="dropdown-container" [ngClass] = "{'hide': navigator[0].hide}">
       <a routerLink = "/branch" >System Config</a>
     </div>
   
-  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">User Creation
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu(1)">User Creation
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+    <div class="dropdown-container" [ngClass] = "{'hide': navigator[1].hide}">
       <a routerLink = "/employee" >Employee</a>
       <a routerLink = "/employees" >Employees</a>
     </div>
-  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu()">CBO Management
+  <button class="dropdown-btn dropdown-toggle" (click)="showSubmenu(2)">CBO Management
       <i class="fa fa-caret-down"></i>
     </button>
-    <div class="dropdown-container" [ngClass] = "{'hide': hide}">
+    <div class="dropdown-container" [ngClass] = "{'hide': navigator[2].hide}">
       <a routerLink = "/cbo" >CBO</a>
     </div>
   <div routerLinkActive="active">

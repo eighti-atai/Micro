@@ -6,17 +6,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigator.component.css']
 })
 export class NavigatorComponent implements OnInit {
-  hide: boolean;
   open: boolean;
+  navigator =  [];
   constructor() { }
 
   ngOnInit() {
-    this.hide = true;
     this.open = true;
+    this.navigator =  [{index: 1, hide: true}, 
+                       {index: 2, hide: true}, 
+                       {index: 3, hide: true}, 
+                       {index: 4, hide: true}];
   }
 
-  showSubmenu(){
-    this.hide = !this.hide;
+  showSubmenu(i){
+    this.navigator[i].hide = !this.navigator[i].hide;
   }
 
   openNav(){
