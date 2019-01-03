@@ -49,6 +49,7 @@ export class CboComponent implements OnInit {
       if(result === "success"){
         this.myform = this.cboForm.value;
         this.cboForm.reset(this.myform);
+        this.baseService.setFormReadOnly();
       }
       else{
         alert("Error Occurred trying to Save the record");
@@ -60,28 +61,17 @@ export class CboComponent implements OnInit {
     this.saveSubscription.unsubscribe();
   }
   onNew(){
-    this.new = true;
-    this.edit = false;
-    this.readMode = false;
-    this.cancel = true;
-    this.baseService.create(new Cbo());
+    this.baseService.onNew(new Employee());
   }
   onEdit(){
-    this.edit = true;
-    this.new = false;
-    this.readMode = false;
-    console.log(this.cboForm);
-    this.cancel = true;
-    this.baseService.edit()
+    this.baseService.onEdit();
   }
   onDelete(){
-    this.new = false;
-    this.edit = true;
-    this.baseService.delete(this.baseService.record.objid)
+    this.baseService.onDelete();
   }
   onCancel(){
-    this.cancel = false;
-    this.baseService.cancel()
+    this.myform = this.baseService.onCancel();
+    this.cboForm.reset(this.myform);
   }
 
   create(): void {
