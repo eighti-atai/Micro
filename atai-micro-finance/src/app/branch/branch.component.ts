@@ -40,13 +40,14 @@ export class BranchComponent implements OnInit {
 
   ngOnInit() {
     //this.record = {objid: "p3x5"};
-    this.baseService.init('Branch', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
+    this.baseService.init('Branch', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.branchForm);
     this.baseService.reloadAll();
     //this.onLovList();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
         this.myform = this.branchForm.value;
         this.branchForm.reset(this.myform);
+        this.baseService.setFormReadOnly();
       }
       else{
         alert("Error Occurred trying to Save the record");
@@ -58,45 +59,17 @@ export class BranchComponent implements OnInit {
     this.saveSubscription.unsubscribe();
   }
   onNew(){
-    this.new = true;
-    this.edit = false;
-    this.readMode = false;
-    this.cancel = true;
-    this.baseService.create(new Branch());
+    this.baseService.onNew(new Branch());
   }
   onEdit(){
-    this.edit = true;
-    this.new = false;
-    this.readMode = false;
-    console.log(this.branchForm);
-    this.cancel = true;
-    this.baseService.edit()
+    this.baseService.onEdit()
   }
   onDelete(){
-    this.new = false;
-    this.edit = true;
-    this.baseService.delete(this.baseService.record.objid)
+    this.baseService.onDelete();
   }
   onCancel(){
-    this.cancel = false;
-    this.baseService.cancel()
+    this.myform = this.baseService.onCancel();
+    this.branchForm.reset(this.myform);
   }
-
-  /*create(): void {
-    
-  }*/
-
-  /*onLovList():void
-  {
-    this.employee = this.baseService.getOtherEntityData('Employee');
-    let element: HTMLElement = document.getElementById('creditOfficer') as HTMLElement;
-    element.ontouchend
-   /* if (typeof element.onclick == "function") {
-      element.onclick.apply(element);
-  }*/
-    //element.click();
-   // console.error('gggggg');
-    
- // }
 }
 

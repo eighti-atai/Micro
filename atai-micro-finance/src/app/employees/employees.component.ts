@@ -41,7 +41,7 @@ export class EmployeesComponent implements OnInit {
       rows: this.fb.array([
         ])
     });
-    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
+    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.employeeForm);
     this.baseService.reloadAll();
   }
   onNew(){

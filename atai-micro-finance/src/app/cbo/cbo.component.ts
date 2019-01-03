@@ -42,7 +42,7 @@ export class CboComponent implements OnInit {
 
   ngOnInit() {
     //this.record = {objid: "p3x5"};
-    this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord);
+    this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.cboForm);
     this.baseService.reloadAll();
     this.onLovList();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
