@@ -4,11 +4,12 @@
       <td> 
           <select 
               type="text"
-              id="title"
+              id="headerobjid"
               class="mainbackgound mainselector form-control form-control-sm"
               [(ngModel)]="baseService.headerobjid"
               (ngModelChange)="baseService.reload(baseService.headerobjid)"
-              name="title">
+              name="headerobjid"
+              [disabled]="!baseService.getReadMode()">
               <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
                   {{record.cboCode}} - {{record.cboName}} 
               </option>
