@@ -53,37 +53,22 @@ export class EmployeeComponent implements OnInit {
     this.saveSubscription.unsubscribe();
   }
   onNew(){
-   // this.myform = this.form.value;
-    /* this.new = true;
-    this.edit = false;
-    this.readMode = false;
-    this.cancel = true; */
     this.baseService.onNew(new Employee());
   }
   onEdit(){
-    //this.myform = this.form.value;
-    /* this.edit = true;
-    this.new = false;
-    this.readMode = false;
-    console.log(this.employeeForm);
-    this.cancel = true; */
-    this.baseService.onEdit();
+    this.baseService.onEdit()
   }
   onDelete(){
-    /* this.new = false;
-    this.edit = true; */
     this.baseService.onDelete();
   }
   onCancel(){
-    /* this.cancel = false; */
     this.myform = this.baseService.onCancel();
     this.form.reset(this.myform);
-    /* this.readMode = true;
-    this.new = false;
-    this.edit = false; */
   }
-
-  create(): void {
-    
+  onSearch(){
+    this.baseService.onSearch();
+  }
+  onSave(){
+    this.baseService.onSubmit();
   }
 }

@@ -4,7 +4,6 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Cbo } from './cbo';
 import { BaseService } from '../base.service';
-import { Employee } from '../employee/employee';
 import { asElementData } from '@angular/core/src/view';
 
 
@@ -33,7 +32,6 @@ export class CboComponent implements OnInit {
   submitted = false;
   lastobjid = null;
   saving: boolean = true;
-  employeeList : Employee[];
   employees : any;
   branches : any;
   constructor(private baseService: BaseService) { 
@@ -61,10 +59,10 @@ export class CboComponent implements OnInit {
     this.saveSubscription.unsubscribe();
   }
   onNew(){
-    this.baseService.onNew(new Employee());
+    this.baseService.onNew(new Cbo());
   }
   onEdit(){
-    this.baseService.onEdit();
+    this.baseService.onEdit()
   }
   onDelete(){
     this.baseService.onDelete();
@@ -73,23 +71,17 @@ export class CboComponent implements OnInit {
     this.myform = this.baseService.onCancel();
     this.cboForm.reset(this.myform);
   }
-
-  create(): void {
-    
+  onSearch(){
+    this.baseService.onSearch();
+  }
+  onSave(){
+    this.baseService.onSubmit();
   }
 
   onLovList():void
   {
     this.employees = this.baseService.getOtherEntityData('Employee',this.searchRecord);
-    this.branches = this.baseService.getOtherEntityData('Branch',this.searchRecord);
-    //let element: HTMLElement = document.getElementById('creditOfficer') as HTMLElement;
-    //element.ontouchend
-   /* if (typeof element.onclick == "function") {
-      element.onclick.apply(element);
-  }*/
-    //element.click();
-   // console.error('gggggg');
-    
+    this.branches = this.baseService.getOtherEntityData('Branch',this.searchRecord);    
   }
 }
 
