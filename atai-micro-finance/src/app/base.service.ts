@@ -344,7 +344,7 @@ export class BaseService {
   }
   onDelete(){
     this.newMode = false;
-    this.editMode = true;
+    this.editMode = false;
     this.delete(this.record.objid)
   }
   onCancel(): any{

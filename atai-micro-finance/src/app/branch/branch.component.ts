@@ -12,7 +12,7 @@ import { BaseService } from '../base.service';
   styleUrls: ['./branch.component.css']
 })
 export class BranchComponent implements OnInit {
-  @ViewChild('f') branchForm : NgForm;
+  @ViewChild('f') form : NgForm;
   myform: any;
   saveSubscription: Subscription;
   record: Branch = new Branch();
@@ -27,12 +27,12 @@ export class BranchComponent implements OnInit {
 
   ngOnInit() {
     //this.record = {objid: "p3x5"};
-    this.baseService.init('Branch', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.branchForm);
+    this.baseService.init('Branch', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.form);
     this.baseService.reloadAll();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
-        this.myform = this.branchForm.value;
-        this.branchForm.reset(this.myform);
+        this.myform = this.form.value;
+        this.form.reset(this.myform);
         this.baseService.setFormReadOnly();
       }
       else{
@@ -43,25 +43,6 @@ export class BranchComponent implements OnInit {
 
   ngOnDestroy(){
     this.saveSubscription.unsubscribe();
-  }
-  onNew(){
-    this.baseService.onNew(new Branch());
-  }
-  onEdit(){
-    this.baseService.onEdit()
-  }
-  onDelete(){
-    this.baseService.onDelete();
-  }
-  onCancel(){
-    this.myform = this.baseService.onCancel();
-    this.branchForm.reset(this.myform);
-  }
-  onSearch(){
-    this.baseService.onSearch();
-  }
-  onSave(){
-    this.baseService.onSubmit();
   }
 }
 

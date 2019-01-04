@@ -14,7 +14,7 @@ import { asElementData } from '@angular/core/src/view';
   styleUrls: ['./cbo.component.css']
 })
 export class CboComponent implements OnInit {
-  @ViewChild('f') cboForm : NgForm;
+  @ViewChild('f') form : NgForm;
   myform: any;
   saveSubscription: Subscription;
 
@@ -29,13 +29,13 @@ export class CboComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.cboForm);
+    this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.form);
     this.baseService.reloadAll();
     this.onLovList();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
-        this.myform = this.cboForm.value;
-        this.cboForm.reset(this.myform);
+        this.myform = this.form.value;
+        this.form.reset(this.myform);
         this.baseService.setFormReadOnly();
       }
       else{
@@ -58,7 +58,7 @@ export class CboComponent implements OnInit {
   }
   onCancel(){
     this.myform = this.baseService.onCancel();
-    this.cboForm.reset(this.myform);
+    this.form.reset(this.myform);
   }
   onSearch(){
     this.baseService.onSearch();
