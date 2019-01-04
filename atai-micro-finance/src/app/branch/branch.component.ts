@@ -6,6 +6,7 @@ import { Branch } from './branch';
 import { BaseService } from '../base.service';
 //import { Employee } from '../employee/employee';
 import { asElementData } from '@angular/core/src/view';
+import * as $ from 'jquery';
 
 
 @Component({
@@ -15,6 +16,7 @@ import { asElementData } from '@angular/core/src/view';
 })
 export class BranchComponent implements OnInit {
   @ViewChild('f') branchForm : NgForm;
+  isCollapsed = false;
   new: boolean = false;
   edit: boolean = false;
   cancel: boolean = false;

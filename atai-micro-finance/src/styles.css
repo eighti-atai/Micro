@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 .hide{
     display: none;
 }
@@ -18,7 +17,8 @@ select{
     outline-color: rgb(165, 166, 167);
     outline-width: 2px;*/
     background-color:white;
-    
+    margin-left: 0px;
+    margin-top: 5px ;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);     
 }
 
@@ -28,7 +28,7 @@ select{
 
 .mainbuttonpanel{
     /* padding-top: 10px; */
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 .mainselector{
@@ -98,3 +98,4 @@ select{
 .main-col{
     height: -webkit-fill-available;
 }
+

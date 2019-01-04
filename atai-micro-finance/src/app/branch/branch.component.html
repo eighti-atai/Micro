@@ -5,7 +5,7 @@
           <select 
               type="text"
               id="headerobjid"
-              class="mainbackgound mainselector form-control form-control-sm"
+              class="mainbackgound mainselector form-control form-control-md"
               [(ngModel)]="baseService.headerobjid"
               (ngModelChange)="baseService.reload(baseService.headerobjid)"
               name="headerobjid"
@@ -22,7 +22,8 @@
 <form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
-            <button *ngIf="!baseService.getNew()" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
+               
+            <button *ngIf="!baseService.getNew()" (click) = "onNew()" type="button"   class="btn btn-default btn-crud" aria-label="Left Align"   >
                 <i class="material-icons md-18">add</i>
             </button>   
             <button *ngIf="(record.objid !==null) && !baseService.getEdit()" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
@@ -31,46 +32,62 @@
             <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
                 <i class="material-icons md-18">delete</i>
             </button>
-            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >Save</button>
-            <button *ngIf="baseService.getCancel()" (click) = "onCancel()" class="btn btn-light">Cancel</button>
+            <button type="submit" *ngIf="f.valid && f.dirty" class="btn btn-success" >
+                    <i class="material-icons md-18">save</i>
+            </button>
+            <button *ngIf="baseService.getCancel()" (click) = "onCancel()" class="btn  btn-default btn-crud">
+                    <i class="material-icons md-18">cancel</i>
+            </button>
+            <button *ngIf="baseService.getCancel()" (click) = "onCancel()" class="btn  btn-default btn-crud">
+                    <i class="material-icons md-18">search</i>
+            </button>
         </div>
         <div class="col-md-1">
             <button class="btn btn-default">Details</button>
         </div>
        
     </div>
-  
-  <div class="row blockstyle group-block">
-      <div class="col-md-3">
-          <div class="form-group">
-              <label for="code">*Branch Code</label>
-              <input 
-                  type="text"
-                  id="code"
-                  class="form-control form-control-sm"
-                  style="text-transform:uppercase"
-                  [(ngModel)]="baseService.record.code"
-                  name="code"
-                  required
-                  [disabled]="baseService.getReadMode()">
-          </div>
-      </div>
-      <div class="col-md-3">
-          <div class="form-group">
-              <label for="name">*Branch Name</label>
-              <input 
-                  type="text"
-                  id="name"
-                  class="form-control form-control-sm"
-                  [(ngModel)]="baseService.record.name"
-                  name="name"
-                  required
-                  [disabled]="baseService.getReadMode()">
-          </div>
-      </div>
+
+    <div class="row blockstyle group-block">
+        <p  data-toggle="collapse" data-target="#demo">Search</p>
+        <div id="demo" class="collapse" data-toggle="collapse">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        </div>
+    </div>
+    
+    <div class="row blockstyle group-block" >
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="code">*Branch Code</label>
+                <input 
+                    type="text"
+                    id="code"
+                    class="form-control form-control-sm"
+                    style="text-transform:uppercase"
+                    [(ngModel)]="baseService.record.code"
+                    name="code"
+                    required
+                    [disabled]="baseService.getReadMode()">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="name">*Branch Name</label>
+                <input 
+                    type="text"
+                    id="name"
+                    class="form-control form-control-sm"
+                    [(ngModel)]="baseService.record.name"
+                    name="name"
+                    required
+                    [disabled]="baseService.getReadMode()">
+            </div>
+        </div>
     </div>
   
-    <div class="row blockstyle group-block" style="margin-top: 10px" >
+    <div class="row blockstyle group-block"  >
       <div class="col-md-3">
           <div class="form-group">
                   <label for="address1">*Address1</label>
