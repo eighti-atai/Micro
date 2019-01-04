@@ -73,5 +73,8 @@ export class BranchComponent implements OnInit {
   onSearch(){
     this.baseService.onSearch();
   }
+  onSave(){
+    this.baseService.onSubmit();
+  }
 }
 

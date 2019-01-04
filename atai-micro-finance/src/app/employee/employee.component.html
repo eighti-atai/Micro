@@ -18,66 +18,65 @@
     </tr>
 </table>
 
-
-<form #f="ngForm" >
-    <div class="row mainbuttonpanel">
-        <div class="col-md-3">
-            <button *ngIf="!baseService.getNew()" 
-                (click) = "onNew()" type="button"   
+<div class="row mainbuttonpanel">
+    <div class="col-md-3">
+        <button *ngIf="!baseService.getNew()" 
+            (click) = "onNew()" type="button"   
+            class="btn btn-default btn-crud" 
+            aria-label="Left Align"   
+            tooltip="New" 
+            placement="bottom" 
+            show-delay="100" >
+            <i class="material-icons md-18">add</i>
+        </button>     
+        <button *ngIf="(record.objid !==null) && !baseService.getEdit()" 
+                (click) = "onEdit()" 
+                type="button" 
                 class="btn btn-default btn-crud" 
-                aria-label="Left Align"   
-                tooltip="New" 
+                aria-label="Left Align"
+                tooltip="Edit" 
                 placement="bottom" 
-                show-delay="100" >
-                <i class="material-icons md-18">add</i>
-            </button>     
-            <button *ngIf="(record.objid !==null) && !baseService.getEdit()" 
-                    (click) = "onEdit()" 
-                    type="button" 
-                    class="btn btn-default btn-crud" 
-                    aria-label="Left Align"
-                    tooltip="Edit" 
-                    placement="bottom" 
-                    show-delay="100">
-                <i class="material-icons md-18">edit</i>
-            </button>
-            <button *ngIf="(record.objid !==null)" 
-                    type="button" 
-                    (click) = "onDelete()" 
-                    class="btn btn-default btn-crud" 
-                    aria-label="Left Align"
-                    tooltip="Delete" 
-                    placement="bottom" 
-                    show-delay="100">
-                <i class="material-icons md-18">delete</i>
-            </button>
-            <button type="button" 
-                    *ngIf="f.valid && f.dirty" 
-                    (click) = "baseService.onSubmit()"
-                    class="btn btn-success" 
-                    tooltip="Save" 
-                    placement="bottom" 
-                    show-delay="100">
-                <i class="material-icons md-18">save</i>
-            </button>
-            <button *ngIf="baseService.getCancel()" 
-                    (click) = "onCancel()" 
-                    class="btn  btn-default btn-crud"
-                    tooltip="Cancel" 
-                    placement="bottom" 
-                    show-delay="100">
-                <i class="material-icons md-18">cancel</i>
-            </button>
-            <button *ngIf="baseService.getCancel()" 
-                    (click) = "onCancel()" 
-                    class="btn  btn-default btn-crud"
-                    tooltip="Search" 
-                    placement="bottom" 
-                    show-delay="100">
-                <i class="material-icons md-18">search</i>
-            </button>
-        </div>
+                show-delay="100">
+            <i class="material-icons md-18">edit</i>
+        </button>
+        <button *ngIf="(record.objid !==null) && !baseService.getDelete()" 
+                type="button" 
+                (click) = "onDelete()" 
+                class="btn btn-default btn-crud" 
+                aria-label="Left Align"
+                tooltip="Delete" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">delete</i>
+        </button>
+        <button type="button" 
+                *ngIf="f.valid && f.dirty" 
+                (click) = "onSave()"
+                class="btn btn-success" 
+                tooltip="Save" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">save</i>
+        </button>
+        <button *ngIf="baseService.getCancel()" 
+                (click) = "onCancel()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Cancel" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">cancel</i>
+        </button>
+        <button *ngIf="!baseService.getSearch()" 
+                (click) = "onSearch()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Search" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">search</i>
+        </button>
     </div>
+</div>
+<form #f="ngForm" >
     <div class="row blockstyle group-block">
         <div class="col-md-3">
             <div class="form-group">
