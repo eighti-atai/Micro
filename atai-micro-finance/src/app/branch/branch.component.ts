@@ -13,26 +13,14 @@ import { BaseService } from '../base.service';
 })
 export class BranchComponent implements OnInit {
   @ViewChild('f') branchForm : NgForm;
-  isCollapsed = false;
-  new: boolean = false;
-  edit: boolean = false;
-  cancel: boolean = false;
-  readMode = true;
-  defaultTitle = "mr";
-  defaultName = "";
   myform: any;
   saveSubscription: Subscription;
-
   record: Branch = new Branch();
   oldRecord: Branch = new Branch();
   searchRecord: Branch = new Branch();
   recordsArr: Branch[];
   records: Observable<Branch[]>;
-  submitted = false;
-  lastobjid = null;
-  saving: boolean = true;
-  //employeeList : Employee[];
-  //employee : any;
+
   constructor(private baseService: BaseService) { 
 
   }
@@ -41,7 +29,6 @@ export class BranchComponent implements OnInit {
     //this.record = {objid: "p3x5"};
     this.baseService.init('Branch', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.branchForm);
     this.baseService.reloadAll();
-    //this.onLovList();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {
       if(result === "success"){
         this.myform = this.branchForm.value;

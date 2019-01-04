@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CboComponent } from './cbo/cbo.component';
 import { BranchComponent } from './branch/branch.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
+import { ButtonsComponent } from './buttons/buttons.component';
 
 
 
@@ -35,7 +36,8 @@ const appRoutes: Routes = [
     HomeComponent,
     EmployeesComponent,
     CboComponent,
-    BranchComponent
+    BranchComponent,
+    ButtonsComponent
   ],
   imports: [
     BrowserModule,

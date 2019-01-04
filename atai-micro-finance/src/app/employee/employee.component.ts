@@ -14,12 +14,6 @@ import { BaseService } from '../base.service';
 })
 export class EmployeeComponent implements OnInit {
   @ViewChild('f') form : NgForm;
-  new: boolean = false;
-  edit: boolean = false;
-  cancel: boolean = false;
-  readMode = true;
-  defaultTitle = "mr";
-  defaultName = "";
   myform: any;
   saveSubscription: Subscription;
 
@@ -28,13 +22,9 @@ export class EmployeeComponent implements OnInit {
   searchRecord: Employee = new Employee();
   recordsArr: Employee[];
   records: Observable<Employee[]>;
-  submitted = false;
-  lastobjid = null;
-  saving: boolean = true;
   constructor(private baseService: BaseService) { }
 
   ngOnInit() {
-    //this.record = {objid: "p3x5"};
     this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord, this.form);
     this.baseService.reloadAll();
     this.saveSubscription = this.baseService.saveObservable.subscribe(result => {

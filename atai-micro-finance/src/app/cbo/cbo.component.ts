@@ -15,12 +15,6 @@ import { asElementData } from '@angular/core/src/view';
 })
 export class CboComponent implements OnInit {
   @ViewChild('f') cboForm : NgForm;
-  new: boolean = false;
-  edit: boolean = false;
-  cancel: boolean = false;
-  readMode = true;
-  defaultTitle = "mr";
-  defaultName = "";
   myform: any;
   saveSubscription: Subscription;
 
@@ -29,17 +23,12 @@ export class CboComponent implements OnInit {
   searchRecord: Cbo = new Cbo();
   recordsArr: Cbo[];
   records: Observable<Cbo[]>;
-  submitted = false;
-  lastobjid = null;
-  saving: boolean = true;
   employees : any;
   branches : any;
   constructor(private baseService: BaseService) { 
-     // this.record = {objid};
   }
 
   ngOnInit() {
-    //this.record = {objid: "p3x5"};
     this.baseService.init('Cbo', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.cboForm);
     this.baseService.reloadAll();
     this.onLovList();
