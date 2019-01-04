@@ -42,23 +42,4 @@ export class EmployeeComponent implements OnInit {
   ngOnDestroy(){
     this.saveSubscription.unsubscribe();
   }
-  onNew(){
-    this.baseService.onNew(new Employee());
-  }
-  onEdit(){
-    this.baseService.onEdit()
-  }
-  onDelete(){
-    this.baseService.onDelete();
-  }
-  onCancel(){
-    this.myform = this.baseService.onCancel();
-    this.form.reset(this.myform);
-  }
-  onSearch(){
-    this.baseService.onSearch();
-  }
-  onSave(){
-    this.baseService.onSubmit();
-  }
 }
