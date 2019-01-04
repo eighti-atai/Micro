@@ -19,7 +19,7 @@
 </table>
 
 
-<form #f="ngForm" (ngSubmit)="baseService.onSubmit();"  >
+<form #f="ngForm" >
     <div class="row mainbuttonpanel">
         <div class="col-md-3">
             <button *ngIf="!baseService.getNew()" 
@@ -51,8 +51,9 @@
                     show-delay="100">
                 <i class="material-icons md-18">delete</i>
             </button>
-            <button type="submit" 
+            <button type="button" 
                     *ngIf="f.valid && f.dirty" 
+                    (click) = "baseService.onSubmit()"
                     class="btn btn-success" 
                     tooltip="Save" 
                     placement="bottom" 

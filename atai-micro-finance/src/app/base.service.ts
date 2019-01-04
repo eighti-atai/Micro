@@ -284,21 +284,26 @@ export class BaseService {
 
   search(objid: String) {
     this.records = this.searchObject(this.searchRecord);
-    
+    //console.error("###### 01 ="+ this.recordsArr.length);
     this.records.subscribe((data) => {
       this.recordsArr = data;
+      //console.error("###### 02 ="+ this.recordsArr.length);
       if ( !(this.recordsArr === undefined ||  this.recordsArr.length == 0)) {
         if (objid == null){
+          //console.error("###### 03 ="+ this.recordsArr.length);
+          //console.error("###### 03 ="+ data[0]);
           this.record = data[0];
           this.headerobjid = this.record.objid;
           this.lastobjid = this.record.objid;
         }
         else{
+          //console.error("###### 04 ="+ this.recordsArr.length);
           this.reload(objid);
         }
         this.fieldeditable  = false;
       }
       else{
+        //console.error("###### 05 ="+ this.recordsArr.length);
         this.record = Object.assign({}, this.emptyRecord);  
       }
     }, (error) => {
@@ -352,12 +357,24 @@ export class BaseService {
     return this.oldForm;
   }
 
+  onSearch(){
+    this.search(null);
+  }
+
   getNew(): boolean{
-    return this.newMode;
+    return (this.editMode || this.newMode);
   }
 
   getEdit(): boolean{
-    return this.editMode;
+    return (this.editMode || this.newMode);
+  }
+
+  getDelete(): boolean{
+    return (this.editMode || this.newMode);
+  }
+
+  getSearch(): boolean{
+    return (this.editMode || this.newMode);
   }
 
   getReadMode(): boolean{

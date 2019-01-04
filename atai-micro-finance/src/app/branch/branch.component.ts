@@ -70,5 +70,8 @@ export class BranchComponent implements OnInit {
     this.myform = this.baseService.onCancel();
     this.branchForm.reset(this.myform);
   }
+  onSearch(){
+    this.baseService.onSearch();
+  }
 }
 
