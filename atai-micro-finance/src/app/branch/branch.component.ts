@@ -4,9 +4,6 @@ import { Observable, Subscription } from 'rxjs';
 
 import { Branch } from './branch';
 import { BaseService } from '../base.service';
-//import { Employee } from '../employee/employee';
-import { asElementData } from '@angular/core/src/view';
-import * as $ from 'jquery';
 
 
 @Component({
@@ -37,7 +34,7 @@ export class BranchComponent implements OnInit {
   //employeeList : Employee[];
   //employee : any;
   constructor(private baseService: BaseService) { 
-     // this.record = {objid};
+
   }
 
   ngOnInit() {

@@ -14,6 +14,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CboComponent } from './cbo/cbo.component';
 import { BranchComponent } from './branch/branch.component';
+import { TooltipModule } from 'ng2-tooltip-directive';
 
 
 
@@ -41,7 +42,8 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    TooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
