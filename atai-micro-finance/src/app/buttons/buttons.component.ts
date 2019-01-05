@@ -8,7 +8,6 @@ import { NgForm } from '@angular/forms';
   styleUrls: ['./buttons.component.css']
 })
 export class ButtonsComponent implements OnInit {
-  @Input() objid: string;
   @Input() valid: boolean;
   @Input() dirty: boolean;
   @Input() myform: any;

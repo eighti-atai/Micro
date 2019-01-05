@@ -1,23 +1,5 @@
-<table>
-    <tr class="col-md-2">
-        <td><h3>CBO</h3></td>
-        <td> 
-            <select 
-                type="text"
-                id="headerobjid"
-                class="mainbackgound mainselector form-control form-control-sm"
-                [(ngModel)]="baseService.headerobjid"
-                (ngModelChange)="baseService.reload(baseService.headerobjid)"
-                name="headerobjid"
-                [disabled]="!baseService.getReadMode()">
-                <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
-                    {{record.cboCode}} - {{record.cboName}} 
-                </option>
-            </select>
-        </td>
-    </tr>
-</table>
-<app-buttons [objid] ="record.objid" [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
+<app-selector [title]="'CBO'" [select1]= "'cboCode'" [select2]= "'cboName'"></app-selector>
+<app-buttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
 <form #f="ngForm" >
     <div class="row blockstyle group-block">
         <div class="col-md-3">

@@ -17,7 +17,8 @@
         </td>
     </tr>
 </table>
-<app-buttons [objid] ="record.objid" [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
+<app-selector [title]="'Branch'" [select1]= "'code'" [select2]= "'name'"></app-selector>
+<app-buttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
 <div class="row blockstyle group-block">
     <p  data-toggle="collapse" data-target="#demo">Search</p>
     <div id="demo" class="collapse" data-toggle="collapse">

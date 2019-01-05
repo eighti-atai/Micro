@@ -187,11 +187,11 @@ public class Employee  implements Model<String> {
 		this.objid = objid;
 	}
 
-	private String getUserName() {
+	public String getUserName() {
 		return userName;
 	}
 
-	private void setUserName(String userName) {
+	public void setUserName(String userName) {
 		this.userName = userName.toUpperCase();
 	}
 

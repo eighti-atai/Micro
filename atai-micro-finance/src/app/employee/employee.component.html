@@ -1,23 +1,5 @@
-<table>
-    <tr class="col-md-2">
-        <td><h3>Employee</h3></td>
-        <td> 
-            <select 
-                type="text"
-                id="headerobjid"
-                class="mainbackgound mainselector form-control form-control-sm"
-                [(ngModel)]="baseService.headerobjid"
-                (ngModelChange)="baseService.reload(baseService.headerobjid)"
-                name="headerobjid"
-                [disabled]="!baseService.getReadMode()">
-                <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
-                    {{record.id.toUpperCase()}} - {{record.firstName}} 
-                </option>
-            </select>
-        </td>
-    </tr>
-</table>
-<app-buttons [objid] ="record.objid" [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
+<app-selector [title]="'Employee'" [select1]= "'userName'" [select2]= "'firstName'"></app-selector>
+<app-buttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
 <form #f="ngForm" >
     <div class="row blockstyle group-block">
         <div class="col-md-3">
@@ -171,7 +153,7 @@
                     style="text-transform:uppercase"
                     id="userName"
                     class="form-control form-control-sm"
-                    [(ngModel)]="baseService.record.id"
+                    [(ngModel)]="baseService.record.userName"
                     name="userName"
                     required
                     [disabled]="baseService.getReadMode()">

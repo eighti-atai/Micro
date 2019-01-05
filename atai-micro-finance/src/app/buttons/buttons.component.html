@@ -9,7 +9,7 @@
           show-delay="100" >
           <i class="material-icons md-18">add</i>
       </button>     
-      <button *ngIf="(objid !==null) && !baseService.getEdit()" 
+      <button *ngIf="(baseService.record.objid !==null) && !baseService.getEdit()" 
               (click) = "onEdit()" 
               type="button" 
               class="btn btn-default btn-crud" 
@@ -19,7 +19,7 @@
               show-delay="100">
           <i class="material-icons md-18">edit</i>
       </button>
-      <button *ngIf="(objid !==null) && !baseService.getDelete()" 
+      <button *ngIf="(baseService.record.objid !==null) && !baseService.getDelete()" 
               type="button" 
               (click) = "onDelete()" 
               class="btn btn-default btn-crud" 
