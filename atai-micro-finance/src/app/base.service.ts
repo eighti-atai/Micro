@@ -35,6 +35,8 @@ export class BaseService {
   newMode: boolean = false;
   editMode: boolean = false;
   cancelMode: boolean = false;
+  expandMode: boolean = false;
+  collapseMode: boolean = true;
   readMode = true;
   
    //private handleError: HandleError;
@@ -361,6 +363,16 @@ export class BaseService {
     this.search(null);
   }
 
+  onExpand(){
+    this.expandMode = true;
+    this.collapseMode = false;
+  }
+
+  onCollapse(){
+    this.collapseMode = true;
+    this.expandMode = false;
+  }
+
   getNew(): boolean{
     return (this.editMode || this.newMode);
   }
@@ -390,5 +402,12 @@ export class BaseService {
     this.newMode = false;
     this.editMode = false;
     this.cancelMode = false;
+  }
+
+  getExpand(): boolean{
+    return this.expandMode;
+  }
+  getCollapse(): boolean{
+    return this.collapseMode;
   }
 }

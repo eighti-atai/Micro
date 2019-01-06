@@ -1,39 +1,107 @@
-<table>
-    <tr class="col-md-2">
-        <td><h3>Branch</h3></td>
-        <td> 
-            <select 
-                type="text"
-                id="headerobjid"
-                class="mainbackgound mainselector form-control form-control-md"
-                [(ngModel)]="baseService.headerobjid"
-                (ngModelChange)="baseService.reload(baseService.headerobjid)"
-                name="headerobjid"
-                [disabled]="!baseService.getReadMode()">
-                <option *ngFor="let record of baseService.recordsArr  " value="{{record.objid}}">
-                    {{record.code.toUpperCase()}} - {{record.name}} 
-                </option>
-            </select>
-        </td>
-    </tr>
-</table>
 <app-selector [title]="'Branch'" [select1]= "'code'" [select2]= "'name'"></app-selector>
 <app-buttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
-<div class="row blockstyle group-block">
-    <p  data-toggle="collapse" data-target="#demo">Search</p>
-    <div id="demo" class="collapse" data-toggle="collapse">
-        <div class="col-md-12">
-            <div class="form-group">
-                <input 
-                    type="text"
-                    id="code_search"
-                    class="form-control form-control-sm"
-                    style="text-transform:uppercase"
-                    [(ngModel)]="baseService.searchRecord.code"
-                    name="code_search">
-            </div>
+
+<div class="row blockstyle group-search-block" [hidden] = "baseService.getCollapse()">
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="code_search"
+                class="form-control form-control-sm"
+                placeholder="Branch Code"
+                style="text-transform:uppercase"
+                [(ngModel)]="baseService.searchRecord.code"
+                name="code_search">
         </div>
     </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="name_search"
+                class="form-control form-control-sm"
+                placeholder="Branch Name"
+                [(ngModel)]="baseService.searchRecord.name"
+                name="name_search">
+        </div>            
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="address1_search"
+                class="form-control form-control-sm"
+                placeholder="Address1"
+                [(ngModel)]="baseService.searchRecord.address1"
+                name="address1_search">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="address2_search"
+                class="form-control form-control-sm"
+                placeholder="Address2"
+                [(ngModel)]="baseService.searchRecord.address2"
+                name="address2_search">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="address3_search"
+                class="form-control form-control-sm"
+                placeholder="Address3"
+                [(ngModel)]="baseService.searchRecord.address3"
+                name="address3_search">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="city_search"
+                class="form-control form-control-sm"
+                placeholder="City"
+                [(ngModel)]="baseService.searchRecord.city"
+                name="city_search">
+        </div>
+    </div>  
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="phoneNo_search"
+                class="form-control form-control-sm"
+                placeholder="Phone No"
+                [(ngModel)]="baseService.searchRecord.phoneNo"
+                name="phoneNo_search">
+        </div>
+    </div>  
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="email_search"
+                class="form-control form-control-sm"
+                placeholder="E-mail"
+                [(ngModel)]="baseService.searchRecord.email"
+                name="email_search">
+        </div>
+    </div>  
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="fax_search"
+                class="form-control form-control-sm"
+                placeholder="Fax"
+                [(ngModel)]="baseService.searchRecord.fax"
+                name="fax_search">
+        </div>
+    </div>  
 </div>
 <form #f="ngForm"   >  
     <div class="row blockstyle group-block" >
@@ -67,96 +135,96 @@
     </div>
   
     <div class="row blockstyle group-block"  >
-      <div class="col-md-3">
-          <div class="form-group">
-                  <label for="address1">*Address1</label>
-                  <input 
-                      type="text"
-                      id="address1"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="baseService.record.address1"
-                      name="address1"
-                      required
-                      [disabled]="baseService.getReadMode()">
-          </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-                <label for="address2">*Address2</label>
-                <input 
-                    type="text"
-                    id="address2"
-                    class="form-control form-control-sm"
-                    [(ngModel)]="baseService.record.address2"
-                    name="address2"
-                    required
-                    [disabled]="baseService.getReadMode()">
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="address1">*Address1</label>
+                    <input 
+                        type="text"
+                        id="address1"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.address1"
+                        name="address1"
+                        required
+                        [disabled]="baseService.getReadMode()">
+            </div>
         </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-                <label for="address3">*Address3</label>
-                <input 
-                    type="text"
-                    id="address3"
-                    class="form-control form-control-sm"
-                    [(ngModel)]="baseService.record.address3"
-                    name="address3"
-                    required
-                    [disabled]="baseService.getReadMode()">
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="address2">*Address2</label>
+                    <input 
+                        type="text"
+                        id="address2"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.address2"
+                        name="address2"
+                        required
+                        [disabled]="baseService.getReadMode()">
+            </div>
         </div>
-      </div>
-      <div class="col-md-3">
-          <div class="form-group">
-                  <label for="city">*City</label>
-                  <input 
-                      type="text"
-                      id="city"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="baseService.record.city"
-                      name="city"
-                      required
-                      [disabled]="baseService.getReadMode()">
-          </div>
-      </div>  
-      <div class="col-md-3">
-          <div class="form-group">
-                  <label for="phoneNo">Phone No</label>
-                  <input 
-                      type="text"
-                      id="phoneNo"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="baseService.record.phoneNo"
-                      name="phoneNo"
-                      
-                      [disabled]="baseService.getReadMode()">
-          </div>
-      </div>  
-      <div class="col-md-3">
-          <div class="form-group">
-                  <label for="email">E-mail</label>
-                  <input 
-                      type="text"
-                      id="email"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="baseService.record.email"
-                      name="email"
-                      
-                      [disabled]="baseService.getReadMode()">
-          </div>
-      </div>  
-      <div class="col-md-3">
-          <div class="form-group">
-                  <label for="fax">Fax</label>
-                  <input 
-                      type="text"
-                      id="fax"
-                      class="form-control form-control-sm"
-                      [(ngModel)]="baseService.record.fax"
-                      name="fax"
-                      
-                      [disabled]="baseService.getReadMode()">
-          </div>
-      </div>  
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="address3">*Address3</label>
+                    <input 
+                        type="text"
+                        id="address3"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.address3"
+                        name="address3"
+                        required
+                        [disabled]="baseService.getReadMode()">
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="city">*City</label>
+                    <input 
+                        type="text"
+                        id="city"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.city"
+                        name="city"
+                        required
+                        [disabled]="baseService.getReadMode()">
+            </div>
+        </div>  
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="phoneNo">Phone No</label>
+                    <input 
+                        type="text"
+                        id="phoneNo"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.phoneNo"
+                        name="phoneNo"
+                        
+                        [disabled]="baseService.getReadMode()">
+            </div>
+        </div>  
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input 
+                        type="text"
+                        id="email"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.email"
+                        name="email"
+                        
+                        [disabled]="baseService.getReadMode()">
+            </div>
+        </div>  
+        <div class="col-md-3">
+            <div class="form-group">
+                    <label for="fax">Fax</label>
+                    <input 
+                        type="text"
+                        id="fax"
+                        class="form-control form-control-sm"
+                        [(ngModel)]="baseService.record.fax"
+                        name="fax"
+                        
+                        [disabled]="baseService.getReadMode()">
+            </div>
+        </div>  
     </div>
 </form>

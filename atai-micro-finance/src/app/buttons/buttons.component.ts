@@ -37,4 +37,10 @@ export class ButtonsComponent implements OnInit {
   onSave(){
     this.baseService.onSubmit();
   }
+  onExpand(){
+    this.baseService.onExpand();
+  }
+  onCollapse(){
+    this.baseService.onCollapse();
+  }
 }

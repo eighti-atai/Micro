@@ -1,5 +1,209 @@
 <app-selector [title]="'Employee'" [select1]= "'userName'" [select2]= "'firstName'"></app-selector>
 <app-buttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-buttons>
+<div class="row blockstyle group-search-block" [hidden] = "baseService.getCollapse()">
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                list="titlelist"
+                id="serch_title"
+                placeholder="Title"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.searchRecord.title"
+                name="serch_title">
+            <datalist id="titlelist">
+                <option data-value="mr" value = "Mr" >
+                <option data-value="mrs" value = "Mrs">
+                <option data-value="master" value = "Rev">
+                <option data-value="miss" value = "Miss">
+            </datalist>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_firstName"
+                class="form-control form-control-sm"
+                placeholder="First Name"
+                [(ngModel)]="baseService.searchRecord.firstName"
+                name="serch_firstName">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_middleName"
+                class="form-control form-control-sm"
+                placeholder="Middle Name"
+                [(ngModel)]="baseService.searchRecord.middleNames"
+                name="serch_middleName">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_lastname"
+                class="form-control form-control-sm"
+                placeholder="Last Name"
+                [(ngModel)]="baseService.searchRecord.lastName"
+                name="serch_lastname"
+                required>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_nicNo"
+                class="form-control form-control-sm"
+                placeholder="NIC No"
+                [(ngModel)]="baseService.searchRecord.nicNo"
+                name="serch_nicNo"
+                required>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="date"
+                id="serch_dateOfBirth"
+                class="form-control form-control-sm"
+                placeholder="DoB"
+                [ngModel]="baseService.searchRecord.dateOfBirth| date:'yyyy-MM-dd'"
+                [(ngModel)]="baseService.searchRecord.dateOfBirth"
+                name="serch_dateOfBirth">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                list="genderlist"
+                id="serch_gender"
+                placeholder="Gender"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.searchRecord.gender"
+                name="serch_gender">
+            <datalist id="genderlist">
+                <option data-value="male" value = "Male" >
+                <option data-value="female" value = "Female">
+            </datalist>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                list="civilStatuslist"
+                id="serch_civilStatus"
+                placeholder="Civil Status"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.searchRecord.civilStatus"
+                name="serch_civilStatus">
+            <datalist id="civilStatuslist">
+                <option data-value="single" value = "Single" >
+                <option data-value="married" value = "Married">
+                <option data-value="widowed" value = "Widowed">
+                <option data-value="divorced" value = "Divorced">
+                <option data-value="separated" value = "Separated">
+            </datalist>
+        </div>
+    </div>
+    
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                list="userTypelist"
+                id="serch_userType"
+                placeholder="User Type"
+                class="form-control form-control-sm"
+                [(ngModel)]="baseService.searchRecord.userType"
+                name="serch_userType">
+            <datalist id="userTypelist">
+                <option data-value="administrator" value = "Administrator" >
+                <option data-value="normal" value = "Normal">
+            </datalist>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                style="text-transform:uppercase"
+                id="serch_userName"
+                class="form-control form-control-sm"
+                placeholder="User Name"
+                [(ngModel)]="baseService.searchRecord.userName"
+                name="serch_userName">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_houseNo"
+                class="form-control form-control-sm"
+                placeholder="House No"
+                [(ngModel)]="baseService.searchRecord.houseNo"
+                name="serch_houseNo">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_streetAddress"
+                class="form-control form-control-sm"
+                placeholder="Street Address"
+                [(ngModel)]="baseService.searchRecord.streetAddress"
+                name="serch_streetAddress">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_cityCbo"
+                class="form-control form-control-sm"
+                placeholder="City/Cbo"
+                [(ngModel)]="baseService.searchRecord.cityCbo"
+                name="serch_cityCbo">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_mobileNo"
+                class="form-control form-control-sm"
+                placeholder="Mobile No"
+                [(ngModel)]="baseService.searchRecord.mobileNo"
+                name="serch_mobileNo">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_landPhoneNo"
+                class="form-control form-control-sm"
+                placeholder="Land Phone No"
+                [(ngModel)]="baseService.searchRecord.landPhoneNo"
+                name="serch_landPhoneNo">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <input 
+                type="text"
+                id="serch_email"
+                class="form-control form-control-sm"
+                placeholder="Email"
+                [(ngModel)]="baseService.searchRecord.email"
+                name="serch_email">
+        </div>
+    </div>
+</div>
 <form #f="ngForm" >
     <div class="row blockstyle group-block">
         <div class="col-md-3">
@@ -34,6 +238,7 @@
                     [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                 <label for="middleName">Middle Name</label>
@@ -46,6 +251,7 @@
                     [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="lastname">*Last Name</label>
@@ -59,6 +265,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="nicNo">*NIC No</label>
@@ -72,6 +279,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="dateOfBirth">DoB</label>
@@ -85,6 +293,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                 <label for="gender">*Gender</label>
@@ -100,8 +309,8 @@
                     <option value="female">Female</option>
                 </select>
             </div>
-            
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                 <label for="civilStatus">*Civil Status</label>
@@ -113,14 +322,13 @@
                     name="civilStatus"
                     required
                     [disabled]="baseService.getReadMode()">
-                    <option value="single">single</option>
+                    <option value="single">Single</option>
                     <option value="married">Married</option>
                     <option value="widowed">Widowed</option>
                     <option value="divorced">Divorced</option>
                     <option value="separated">Separated </option>
                 </select>
             </div>
-            
         </div>
     </div>
     
@@ -139,10 +347,8 @@
                     [disabled]="baseService.getReadMode()">
                     <option value="administrator">Administrator</option>
                     <option value="normal">Normal</option>
-
                 </select>
             </div>
-            
         </div>
         
         <div class="col-md-3">
@@ -189,6 +395,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="streetAddress">Street Address</label>
@@ -201,6 +408,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="cityCbo">City/Cbo</label>
@@ -213,6 +421,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="mobileNo">Mobile No</label>
@@ -225,6 +434,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="landPhoneNo">Land Phone No</label>
@@ -237,6 +447,7 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
+
         <div class="col-md-3">
             <div class="form-group">
                     <label for="email">Email</label>
@@ -249,7 +460,6 @@
                         [disabled]="baseService.getReadMode()">
             </div>
         </div>
-        
         <hr>
     </div>
 </form>
