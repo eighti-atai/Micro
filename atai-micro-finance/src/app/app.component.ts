@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,16 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'atai-micro-finance';
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) { }
+
+ngOnInit() {
+const path = this.activatedRoute.snapshot.queryParams['path'];
+const navigateTo = '/' + path;
+
+if (path) {
+  this.router.navigate([navigateTo]);
 }
+}
+}
+
+

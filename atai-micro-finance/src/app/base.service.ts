@@ -402,6 +402,8 @@ export class BaseService {
     this.newMode = false;
     this.editMode = false;
     this.cancelMode = false;
+    this.expandMode = false;
+    this.collapseMode = true;
   }
 
   getExpand(): boolean{
