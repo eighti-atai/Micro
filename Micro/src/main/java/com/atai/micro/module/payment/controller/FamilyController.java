@@ -74,7 +74,7 @@ public class FamilyController extends AbstractController<FamilyKey, Family>{
 	}
 
 	@Override
-	@PostMapping(value = "/Cbo/Search")
+	@PostMapping(value = "/Family/Search")
 	public ResponseEntity<List<Family>> search(@RequestBody Family object) {
 		// TODO Auto-generated method stub
 		return super.search(object);
