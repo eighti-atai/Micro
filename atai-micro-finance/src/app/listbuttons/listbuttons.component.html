@@ -1,0 +1,74 @@
+<div class="row mainbuttonpanel">
+    <div class="col-md-6">
+        <button *ngIf="baseService.getReadMode()" 
+            (click) = "onNew()" type="button"   
+            class="btn btn-default btn-crud" 
+            aria-label="Left Align"   
+            tooltip="New" 
+            placement="bottom" 
+            show-delay="100" >
+            <i class="material-icons md-18">add</i>
+        </button>     
+        <button *ngIf="baseService.getReadMode()" 
+                (click) = "onEdit()" 
+                type="button" 
+                class="btn btn-default btn-crud" 
+                aria-label="Left Align"
+                tooltip="Edit" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">edit</i>
+        </button>
+        <button *ngIf="baseService.getReadMode()" 
+                type="button" 
+                (click) = "onDelete()" 
+                class="btn btn-default btn-crud" 
+                aria-label="Left Align"
+                tooltip="Delete" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">delete</i>
+        </button>
+        <button type="button" 
+                *ngIf="valid && dirty" 
+                (click) = "onSave()"
+                class="btn btn-success" 
+                tooltip="Save" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">save</i>
+        </button>
+        <button *ngIf="baseService.getCancel()" 
+                (click) = "onCancel()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Cancel" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">cancel</i>
+        </button>
+        <button *ngIf="!baseService.getExpand() && !baseService.getSearch()" 
+                (click) = "onExpand()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Show Search Criteria" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">unfold_more</i>
+        </button>
+        <button *ngIf="!baseService.getCollapse() && !baseService.getSearch()" 
+                (click) = "onCollapse()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Hide Search Criteria" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">unfold_less</i>
+        </button>
+        <button *ngIf="!baseService.getSearch()" 
+                (click) = "onSearch()" 
+                class="btn  btn-default btn-crud"
+                tooltip="Search" 
+                placement="bottom" 
+                show-delay="100">
+            <i class="material-icons md-18">search</i>
+        </button>
+    </div>
+</div> 

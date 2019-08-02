@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import * as cloneDeep from 'lodash/cloneDeep';
 //import { HttpErrorHandler, HandleError } from './http-error-handler.service';
 const httpOptions = {
   headers: new HttpHeaders({
@@ -20,6 +21,7 @@ export class BaseService {
   oldRecord;
   searchRecord;
   recordsArr;
+  oldRecordsArr;
   records;
   emptyrecords;
   submitted = true;
@@ -38,6 +40,7 @@ export class BaseService {
   expandMode: boolean = false;
   collapseMode: boolean = true;
   readMode = true;
+  selectedList: string[] = [];
   
    //private handleError: HandleError;
   private saveSubject = new BehaviorSubject<string>("success");
@@ -284,6 +287,7 @@ export class BaseService {
     });
   }
 
+  
   search(objid: String) {
     this.records = this.searchObject(this.searchRecord);
     //console.error("###### 01 ="+ this.recordsArr.length);
@@ -328,13 +332,13 @@ export class BaseService {
   }
 
   //---------------------- Command Button Hnadling ----------------------
-  onNew(newRec: any){
+  onNew(){
     this.oldForm = this.form.value;
     this.newMode = true;
     this.editMode = false;
     this.readMode = false;
     this.cancelMode = true;
-    this.create(newRec);
+    this.create( this.emptyRecord);
   }
   onEdit(){
     this.oldForm = this.form.value;
@@ -412,4 +416,98 @@ export class BaseService {
   getCollapse(): boolean{
     return this.collapseMode;
   }
+
+
+
+  //----list
+  setListCellReadMode( ): void{
+    for ( let rec of this.recordsArr ) {
+      if(rec.selected && rec.edited ) {
+        console.log(rec.objid);
+        rec.cellReadMode = false;
+      }
+      else
+      {
+        rec.cellReadMode = true;
+      }
+    }
+    return null;
+  }
+
+  createList(emptyrecords:any): void {
+    emptyrecords.cellReadMode  = false;
+    emptyrecords.edited        = false;
+    emptyrecords.added         = true;
+    emptyrecords.selected      = false;
+    this.recordsArr.push(emptyrecords);
+  }
+
+  onListChange(type:string){
+    this.oldRecordsArr = cloneDeep(this.recordsArr);
+    console.log(this.recordsArr);
+    console.log(this.oldRecordsArr);
+    this.oldForm = this.form.value;
+    if(type === "NEW"){
+      this.newMode = true;
+      this.editMode = false;
+      this.readMode = false;
+      this.cancelMode = true;
+      this.createList( this.emptyRecord);
+    }
+    if(type === "EDIT"){
+      for ( let rec of this.recordsArr ) {
+        //console.log(this.recordsArr);
+        if(rec.selected) {
+          rec.cellReadMode  = false;
+          rec.edited        = true;
+          this.newMode      = false;
+          this.readMode     = false;
+          this.cancelMode   = true;
+        }
+        else
+        {
+          rec.cellReadMode = true;
+        }
+      }
+    }
+  }
+
+  onListCancel(): any{
+
+    for ( let rec of this.recordsArr ) {
+     
+      if((rec.selected && rec.edited) || rec.added){
+        rec.edited        = false;
+        rec.added         = false;
+        this.newMode      = false;
+        this.readMode     = true;
+        this.cancelMode   = false;
+        rec.cellReadMode  = true;
+      }
+    }
+    this.recordsArr = cloneDeep(this.oldRecordsArr);
+    return this.oldForm;
+  }
+
+
+
+
+  //----------- list crud
+  reloadList() {
+    this.records = this.getObjectList();
+    console.log(this.records);
+    this.records.subscribe((data) => {
+      this.recordsArr = data;
+      this.recordsArr.forEach(element => {
+        element.cellReadMode  = true;
+        element.edited        = false;
+        element.added         = false;
+        element.selected      = false;
+      });
+    }, (error) => {
+      console.log(error);
+    });
+  }
+
+
 }

@@ -1,24 +1,6 @@
 <h3>Employees</h3>
 <form #f="ngForm" [formGroup]="employeesForm" (ngSubmit)="onSubmit()">
-    <div class="row mainbuttonpanel">
-        <div class="col-md-3">
-            <button *ngIf="(record.objid ===null) && !new" (click) = "onNew()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
-                <i class="material-icons md-18">add</i>
-            </button>   
-            <button *ngIf="(record.objid !==null) && !edit" (click) = "onEdit()" type="button" class="btn btn-default btn-crud" aria-label="Left Align">
-                <i class="material-icons md-18">edit</i>
-            </button>
-            <button *ngIf="(record.objid !==null)" type="button" (click) = "onDelete()" class="btn btn-default btn-crud" aria-label="Left Align">
-                <i class="material-icons md-18">delete</i>
-            </button>
-            <button *ngIf="f.valid && f.dirty" class="btn btn-success">Save</button>
-            <button *ngIf="cancel" (click) = "onCancel()" class="btn btn-light">Cancel</button>
-        </div>
-        <div class="col-md-1">
-            <button type ="submit" class ="btn btn-default">Details</button>
-        </div>
-       
-    </div>
+    <app-listbuttons [valid] ="f.valid" [dirty] ="f.dirty" [form] = "form"></app-listbuttons>
     <div class="blockstyle group-block">
         <div formArrayName="rows" class="table-responsive">
           
@@ -26,6 +8,7 @@
             <table class="table table-sm">
                 <thead class="thead-light">
                     <tr>
+                        <th scope="col">se</th>
                         <th scope="col">Title</th>
                         <th scope="col">First Name</th>
                         <th scope="col">Middle Name</th>
@@ -36,12 +19,25 @@
             <tbody *ngFor="let record of baseService.recordsArr; let i=index">  
                     <tr >
                         <td>
+                            <input 
+                            type="checkbox"
+                            id="selected"
+                            class="form-control form-control-sm"
+                            [(ngModel)]="record.selected"
+                            [ngModelOptions]="{standalone: true}"
+                            [disabled]="!baseService.getReadMode()"
+                           >
+
+                        </td>
+                       
+                        <td>
                             <select 
                                 type="text"
                                 class="form-control form-control-sm"
-                                 [(ngModel)]="record.title"
-                                 [ngModelOptions]="{standalone: true}"
-                                required>
+                                [(ngModel)]="record.title"
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                                [disabled]="record.cellReadMode">
                                 <option value="mr">Mr</option>
                                 <option value="mrs">Mrs</option>
                                 <option value="master">Master</option>
@@ -56,8 +52,11 @@
                                 [(ngModel)]="record.firstName"
                                 [ngModelOptions]="{standalone: true}"
                                 required
-                                [disabled]="readMode">
+                                [disabled]="record.cellReadMode">
                         </td>
+                        <div *ngIf="name.errors.required">
+                            Name is required.
+                          </div>
                         <td>
                             <input 
                             type="text"
@@ -65,7 +64,7 @@
                             class="form-control form-control-sm"
                             [(ngModel)]="record.middleName"
                             [ngModelOptions]="{standalone: true}"
-                            [disabled]="readMode">
+                            [disabled]="record.cellReadMode">
                         </td>
                         <td>
                             <input 
@@ -74,7 +73,7 @@
                             class="form-control form-control-sm"
                             [(ngModel)]="record.lastName"
                             [ngModelOptions]="{standalone: true}"
-                            [disabled]="readMode">
+                            [disabled]="record.cellReadMode">
                         </td>
                         <td>
                             <select 
@@ -83,10 +82,20 @@
                                 class="form-control form-control-sm"
                                 [(ngModel)]="record.gender"
                                 [ngModelOptions]="{standalone: true}"
-                                [disabled]="readMode">
+                                [disabled]="record.cellReadMode">
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
                             </select>
+                        </td>
+                        <td>
+                            <input 
+                                type="text"
+                                id="objid"
+                                class="form-control form-control-sm"
+                                [(ngModel)]="record.objid"
+                                [ngModelOptions]="{standalone: true}"
+                                required
+                                [disabled]="true">
                         </td>
                     </tr>
                 </tbody>

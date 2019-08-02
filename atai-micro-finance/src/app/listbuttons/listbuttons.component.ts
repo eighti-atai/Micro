@@ -1,12 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit , Input} from '@angular/core';
 import { BaseService } from '../base.service';
 import { NgForm } from '@angular/forms';
+
 @Component({
-  selector: 'app-buttons',
-  templateUrl: './buttons.component.html',
-  styleUrls: ['./buttons.component.css']
+  selector: 'app-listbuttons',
+  templateUrl: './listbuttons.component.html',
+  styleUrls: ['./listbuttons.component.css']
 })
-export class ButtonsComponent implements OnInit {
+
+export class ListbuttonsComponent implements OnInit {
+
   @Input() valid: boolean;
   @Input() dirty: boolean;
   @Input() myform: any;
@@ -16,18 +19,17 @@ export class ButtonsComponent implements OnInit {
   ngOnInit() {
   }
 
-  
   onNew(){
-    this.baseService.onNew();
+    this.baseService.onListChange("NEW");
   }
   onEdit(){
-    this.baseService.onEdit()
+    this.baseService.onListChange("EDIT");
   }
   onDelete(){
     this.baseService.onDelete();
   }
   onCancel(){
-    this.myform = this.baseService.onCancel();
+    this.myform = this.baseService.onListCancel();
     this.form.reset(this.myform);
   }
   onSearch(){
@@ -42,4 +44,5 @@ export class ButtonsComponent implements OnInit {
   onCollapse(){
     this.baseService.onCollapse();
   }
+
 }

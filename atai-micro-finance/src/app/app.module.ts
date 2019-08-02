@@ -17,6 +17,7 @@ import { BranchComponent } from './branch/branch.component';
 import { TooltipModule } from 'ng2-tooltip-directive';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { SelectorComponent } from './selector/selector.component';
+import { ListbuttonsComponent } from './listbuttons/listbuttons.component';
 
 
 
@@ -39,7 +40,8 @@ const appRoutes: Routes = [
     CboComponent,
     BranchComponent,
     ButtonsComponent,
-    SelectorComponent
+    SelectorComponent,
+    ListbuttonsComponent
   ],
   imports: [
     BrowserModule,

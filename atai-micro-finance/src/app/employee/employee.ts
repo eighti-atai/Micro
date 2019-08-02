@@ -3,5 +3,5 @@ export class Employee {
     firstName: string;
     //patientContactNo: string;
     //email: string;
-    objid: string;
+    //objid: string;
 }

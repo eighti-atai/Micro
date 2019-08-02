@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./employees.component.css']
 })
 export class EmployeesComponent implements OnInit {
-  @ViewChild('f') employeeForm : NgForm;
+  @ViewChild('f') form : NgForm;
   new: boolean = false;
   edit: boolean = false;
   cancel: boolean = false;
@@ -41,8 +41,8 @@ export class EmployeesComponent implements OnInit {
       rows: this.fb.array([
         ])
     });
-    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.employeeForm);
-    this.baseService.reloadAll();
+    this.baseService.init('Employee', this.record, this.recordsArr, this.records,this.oldRecord,this.searchRecord,this.form);
+    this.baseService.reloadList();
   }
   onNew(){
     //this.new = true;
@@ -65,7 +65,7 @@ export class EmployeesComponent implements OnInit {
     this.edit = true;
     this.new = false;
     this.readMode = false;
-    console.log(this.employeeForm);
+    console.log(this.form);
     this.cancel = true;
   }
   onDelete(){
