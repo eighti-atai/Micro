@@ -41,6 +41,7 @@ export class BaseService {
   collapseMode: boolean = true;
   readMode = true;
   selectedList: string[] = [];
+  enableSaveInList: boolean = false;
   
    //private handleError: HandleError;
   private saveSubject = new BehaviorSubject<string>("success");
@@ -170,6 +171,7 @@ export class BaseService {
   cancel(){
     this.fieldeditable = false;
     this.record = this.oldRecord;
+    this.enableSaveInList = false;
   }
   save(){
     if(this.record.objid == null){
@@ -486,6 +488,7 @@ export class BaseService {
       }
     }
     this.recordsArr = cloneDeep(this.oldRecordsArr);
+    this.enableSaveInList = false;
     return this.oldForm;
   }
 
@@ -507,6 +510,91 @@ export class BaseService {
     }, (error) => {
       console.log(error);
     });
+  }
+
+  enableSaveButton() {
+    this.enableSaveInList = true;
+  }
+
+  onSubmitList() {
+    //this.submitted = true;
+    this.submitted = false;
+    for ( let rec of this.recordsArr ) {
+     
+      if((rec.selected && rec.edited) || rec.added){
+        rec.edited        = false;
+        rec.added         = false;
+        this.newMode      = false;
+        this.readMode     = true;
+        this.cancelMode   = false;
+        rec.cellReadMode  = true;
+        this.saveList(rec.objid,rec); 
+      }
+    }
+    
+  }
+
+  onDeleteList(){
+    this.newMode = false;
+    this.editMode = false;
+    for ( let rec of this.recordsArr ) {
+     
+      if(rec.selected){
+        rec.edited        = false;
+        rec.added         = false;
+        this.newMode      = false;
+        this.readMode     = true;
+        this.cancelMode   = false;
+        rec.cellReadMode  = true;
+        this.delete(rec.objid); 
+      }
+    }
+  }
+
+  saveList(objid:string,rec:any){
+    if(objid == null){
+      this.createObject(rec)
+      .subscribe((data) => {
+        /*if (this.isNotEmpty(data)) {
+          this.record         = data;
+          this.lastobjid      = data.objid;
+          this.headerobjid    = data.objid;
+          this.fieldeditable  = false;
+          this.recordsArr.push(this.record );
+          this.submitted = true;
+          this.saveSubject.next("success");
+        }*/
+        //this.reloadAll();  
+        this.reloadList();
+        this.enableSaveInList = false;
+        //this.reloadList();
+      }, (error) => {
+        console.log(error);
+        this.fieldeditable  = true;
+        this.enableSaveInList = true;
+      });    
+    }
+    else
+    {
+      this.updateObjct(rec)
+      .subscribe((data) => {
+        /*if (this.isNotEmpty(data)) {
+          this.record         = data;
+          this.lastobjid      = data.objid;
+          this.fieldeditable  = false;
+          this.submitted = true;
+          this.saveSubject.next("success");
+        }*/
+        //this.search(this.lastobjid );
+        this.reloadList();
+        this.enableSaveInList = false;
+       // this.reloadList();
+      }, (error) => {
+        console.log(error);
+        this.fieldeditable  = true;
+        this.enableSaveInList = true;
+      });  
+    }
   }
 
 

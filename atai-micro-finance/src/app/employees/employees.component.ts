@@ -86,6 +86,11 @@ export class EmployeesComponent implements OnInit {
     console.log(this.getaliases())
   }
 
-  
+  /*ngAfterViewInit() {
+    this.form.form.controls.EmployeesComponent.valueChanges.subscribe((change) => {
+     console.log("##################"+change)
+    })
+    this.baseService.records.title.
+  }*/
 
 }

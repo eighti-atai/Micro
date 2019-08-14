@@ -39,6 +39,12 @@ export class EmployeeComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit() {
+    this.form.form.valueChanges.subscribe((change) => {
+     console.log("##################"+change)
+    })
+  }
+
   ngOnDestroy(){
     this.saveSubscription.unsubscribe();
   }

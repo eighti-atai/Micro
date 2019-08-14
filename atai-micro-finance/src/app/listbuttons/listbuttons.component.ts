@@ -1,6 +1,9 @@
 import { Component, OnInit , Input} from '@angular/core';
 import { BaseService } from '../base.service';
 import { NgForm } from '@angular/forms';
+import { Employee } from '../employee/employee';
+//import { Employees } from '../employees/employees.component';
+import { EmployeesComponent } from '../employees/employees.component';
 
 @Component({
   selector: 'app-listbuttons',
@@ -14,7 +17,7 @@ export class ListbuttonsComponent implements OnInit {
   @Input() dirty: boolean;
   @Input() myform: any;
   @Input() form : NgForm;
-  constructor(private baseService: BaseService) { }
+  constructor(private baseService: BaseService ) { }
 
   ngOnInit() {
   }
@@ -26,7 +29,7 @@ export class ListbuttonsComponent implements OnInit {
     this.baseService.onListChange("EDIT");
   }
   onDelete(){
-    this.baseService.onDelete();
+    this.baseService.onDeleteList();
   }
   onCancel(){
     this.myform = this.baseService.onListCancel();
@@ -36,7 +39,8 @@ export class ListbuttonsComponent implements OnInit {
     this.baseService.onSearch();
   }
   onSave(){
-    this.baseService.onSubmit();
+    //this.baseService.onSubmit();
+    this.baseService.onSubmitList();
   }
   onExpand(){
     this.baseService.onExpand();

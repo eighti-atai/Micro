@@ -9,11 +9,23 @@
                 <thead class="thead-light">
                     <tr>
                         <th scope="col">se</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">First Name</th>
+                        <th scope="col">*Title</th>
+                        <th scope="col">*First Name</th>
                         <th scope="col">Middle Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Gender</th>
+                        <th scope="col">*Last Name</th>
+                        <th scope="col">*NIC No</th>
+                        <th scope="col">DoB</th>
+                        <th scope="col">*Gender</th>
+                        <th scope="col">*Civil Status</th>
+                        <th scope="col">*User Type</th>
+                        <th scope="col">*User Name</th>
+                        <th scope="col">*Password</th>
+                        <th scope="col">House No</th>
+                        <th scope="col">Street Address</th>
+                        <th scope="col">City/Cbo</th>
+                        <th scope="col">Mobile No</th>
+                        <th scope="col">Land Phone No</th>
+                        <th scope="col">Email</th>
                     </tr>
                 </thead>
             <tbody *ngFor="let record of baseService.recordsArr; let i=index">  
@@ -31,62 +43,272 @@
                         </td>
                        
                         <td>
-                            <select 
-                                type="text"
-                                class="form-control form-control-sm"
-                                [(ngModel)]="record.title"
-                                [ngModelOptions]="{standalone: true}"
-                                required
-                                [disabled]="record.cellReadMode">
-                                <option value="mr">Mr</option>
-                                <option value="mrs">Mrs</option>
-                                <option value="master">Master</option>
-                                <option value="miss">Miss</option>
-                            </select>
+                            <div class="form-group">
+                                <select 
+                                    type="text"
+                                    id="title"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.title"
+                                    name="title"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                                    <option value="mr">Mr</option>
+                                    <option value="mrs">Mrs</option>
+                                    <option value="master">Rev</option>
+                                    <option value="miss">Miss</option>
+                                </select>
+                            </div>
                         </td>
+                        
                         <td>
-                            <input 
-                                type="text"
-                                id="firstName"
-                                class="form-control form-control-sm"
-                                [(ngModel)]="record.firstName"
-                                [ngModelOptions]="{standalone: true}"
-                                required
-                                [disabled]="record.cellReadMode">
+                            <div class="form-group">
+                                <input 
+                                    type="text"
+                                    id="firstName"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.firstName"
+                                    name="firstName"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                            </div>
                         </td>
-                        <div *ngIf="name.errors.required">
-                            Name is required.
-                          </div>
+                
                         <td>
-                            <input 
-                            type="text"
-                            id="middleName"
-                            class="form-control form-control-sm"
-                            [(ngModel)]="record.middleName"
-                            [ngModelOptions]="{standalone: true}"
-                            [disabled]="record.cellReadMode">
+                            <div class="form-group">
+                                <input 
+                                    type="text"
+                                    id="middleName"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.middleNames"
+                                    name="middleName"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    [disabled]="record.cellReadMode">
+                            </div>
                         </td>
+                
                         <td>
-                            <input 
-                            type="text"
-                            id="lastName"
-                            class="form-control form-control-sm"
-                            [(ngModel)]="record.lastName"
-                            [ngModelOptions]="{standalone: true}"
-                            [disabled]="record.cellReadMode">
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="lastname"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.lastName"
+                                        name="lastname"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        required
+                                        [disabled]="record.cellReadMode">
+                            </div>
                         </td>
+                
                         <td>
-                            <select 
-                                type="text"
-                                id="gender"
-                                class="form-control form-control-sm"
-                                [(ngModel)]="record.gender"
-                                [ngModelOptions]="{standalone: true}"
-                                [disabled]="record.cellReadMode">
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="nicNo"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.nicNo"
+                                        name="nicNo"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        required
+                                        [disabled]="record.cellReadMode">
+                            </div>
                         </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="date"
+                                        id="dateOfBirth"
+                                        class="form-control form-control-sm"
+                                        [ngModel]="record.dateOfBirth| date:'yyyy-MM-dd'"
+                                        [(ngModel)]="record.dateOfBirth"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                <select 
+                                    type="text"
+                                    id="gender"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.gender"
+                                    name="gender"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                <select 
+                                    type="text"
+                                    id="civilStatus"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.civilStatus"
+                                    name="civilStatus"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                                    <option value="single">Single</option>
+                                    <option value="married">Married</option>
+                                    <option value="widowed">Widowed</option>
+                                    <option value="divorced">Divorced</option>
+                                    <option value="separated">Separated </option>
+                                </select>
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <select 
+                                    type="text"
+                                    id="userType"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.userType"
+                                    name="userType"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                                    <option value="administrator">Administrator</option>
+                                    <option value="normal">Normal</option>
+                                </select>
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                <input 
+                                    type="text"
+                                    style="text-transform:uppercase"
+                                    id="userName"
+                                    class="form-control form-control-sm"
+                                    [(ngModel)]="record.userName"
+                                    name="userName"
+                                    [ngModelOptions]="{standalone: true}"
+                                    (input)="baseService.enableSaveButton()"
+                                    required
+                                    [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="password"
+                                        autocomplete="new-password"
+                                        id="password"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.password"
+                                        name="password"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        required
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                        
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="houseNo"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.houseNo"
+                                        name="houseNo"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="streetAddress"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.streetAddress"
+                                        name="streetAddress"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="cityCbo"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.cityCbo"
+                                        name="cityCbo"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="mobileNo"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.mobileNo"
+                                        name="mobileNo"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="landPhoneNo"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.landPhoneNo"
+                                        name="landPhoneNo"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+                
+                        <td>
+                            <div class="form-group">
+                                    <input 
+                                        type="text"
+                                        id="email"
+                                        class="form-control form-control-sm"
+                                        [(ngModel)]="record.email"
+                                        name="email"
+                                        [ngModelOptions]="{standalone: true}"
+                                        (input)="baseService.enableSaveButton()"
+                                        [disabled]="record.cellReadMode">
+                            </div>
+                        </td>
+
+                        
                         <td>
                             <input 
                                 type="text"
